@@ -1,7 +1,5 @@
 from django.db import models
 
-from django.db import models
-
 class Plan(models.Model):
 
     FLOOR_CHOICES = (
@@ -31,6 +29,9 @@ class Plan(models.Model):
     affiliate_link = models.URLField()
     style = models.CharField(max_length=20, choices=STYLE_CHOICES, default='barndominium')
     description = models.TextField(blank=True, default='')
+
+    def __str__(self) -> str:
+        return self.name
 
 class FloorPicture(models.Model):
     plan = models.ForeignKey(Plan, on_delete=models.CASCADE, related_name='floor_pictures')
