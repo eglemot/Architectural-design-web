@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Plan List</h1>
+
+  <form method="get">
+    <input type="text" name="q" placeholder="Search...">
+    <button type="submit">Search</button>
+  </form>
+
+  {% for plan in plans %}
+    <div>
+      <h2>{{ plan.name }}</h2>
+      {% if plan.plan_pictures.all %}
+        <img src="{{ plan.plan_pictures.first.image.url }}" alt="{{ plan.name }}">
+      {% else %}
+        <p>No picture available</p>
+      {% endif %}
+      <p>Bedrooms: {{ plan.min_bedrooms }} - {{ plan.max_bedrooms }}</p>
+      <p>Bathrooms: {{ plan.min_bathrooms }} - {{ plan.max_bathrooms }}</p>
+      <p>Floors: {{ plan.floors }}</p>
+      <p>Heated Sq. Feet: {{ plan.heated_sq_feet }}</p>
+      <p>{{ plan.description }}</p>
+      <a href="{{ plan.affiliate_link }}">Learn More</a>
+    </div>
+  {% endfor %}
+{% endblock %}
+
+
