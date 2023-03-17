@@ -1,11 +1,17 @@
 {% extends 'base.html' %}
+
 {% block content %}
+
 <div class="container-fluid">
-  <!-- Filter form -->
+
+  <h2 class="my-4">Find Your Dream Home</h2>
+
   <form method="get">
-    <div class="form-row">
-      <div class="form-group col-md-3">
-        <label for="min_bedrooms">Min. Bedrooms:</label>
+
+    <div class="row">
+
+      <div class="col-md-3 mb-3">
+        <label for="min_bedrooms">Min. Bedrooms</label>
         <select name="min_bedrooms" id="min_bedrooms" class="form-control">
           <option value="">Any</option>
           <option value="1">1</option>
@@ -13,7 +19,6 @@
           <option value="3">3</option>
           <option value="4">4</option>
           <option value="5">5</option>
-          <option value="6">6</option>
         </select>
       </div>
       <div class="form-group col-md-3">
@@ -24,16 +29,7 @@
           <option value="2">2</option>
           <option value="3">3</option>
           <option value="4">4</option>
-          <option value="6">6</option>
-        </select>
-      </div>
-      <div class="form-group col-md-3">
-        <label for="floors">Floors:</label>
-        <select name="floors" id="floors" class="form-control">
-          <option value="">Any</option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
+          <option value="5">5+</option>
         </select>
       </div>
       <div class="form-group col-md-3">
@@ -71,22 +67,38 @@
         </select>
       </div>
       <div class="form-group col-md-3">
+        <label for="floors">Floors:</label>
+        <select name="floors" id="floors" class="form-control">
+          <option value="">Any</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+        </select>
+      </div>
+      <div class="form-group col-md-3">
         <label for="min_sq_feet">Min. Sq. Feet:</label>
         <input type="number" name="min_sq_feet" id="min_sq_feet" class="form-control" min="0" placeholder="Enter min square feet">
       </div>
       <div class="form-group col-md-3">
         <label for="max_sq_feet">Max. Sq. Feet:</label>
         <input type="number" name="max_sq_feet" id="max_sq_feet" class="form-control" min="0" placeholder="Enter max square feet">
-      </div>      
+      </div>
+         
 <!-- Filter form for buttons-->
-<form method="get" class="form-inline mb-3">
-  <div class="form-group mr-2">
-    <button type="submit" class="btn btn-primary">Filter</button>
+<div class="form-group col-md-3 filter-reset-buttons">
+  <div class="form-group d-flex align-items-end">
+    <form method="get" class="form-inline mb-3">
+      <div class="form-group mr-2">
+        <button type="submit" class="btn btn-primary">Filter</button>
+      </div>
+    </form>
+    <div class="form-group">
+      <a href="{% url 'plan_list' %}" class="btn btn-secondary">Reset</a>
+    </div>
   </div>
-  <div class="form-group">
-    <a href="{% url 'plan_list' %}" class="btn btn-secondary">Reset</a>
-  </div>
-</form>
+</div>
+</div>
+
   <!-- Plan list -->
   <div class="row">
     {% for plan in plans %}
@@ -102,9 +114,7 @@
           <p class="card-text">Bedrooms: {{ plan.min_bedrooms }}-{{ plan.max_bedrooms }}</p>
           <p class="card-text">Bathrooms: {{ plan.min_bathrooms }}-{{ plan.max_bathrooms }}</p>
           <p class="card-text">Floors: {{ plan.floors }}</p>
-          <p class="card-text">Style: {{ plan.style }}</p>
           <p class="card-text">Sq. Feet: {{ plan.heated_sq_feet }}</p>
-          <p class="card-text"><a href="{{ plan.affiliate_link }}" target="_blank" rel="nofollow">Buy Now</a></p>
         </div>
       </div>
     </div>
@@ -113,7 +123,20 @@
     {% endfor %}
   </div>
 </div>
+</form>
 {% endblock %}
+{% block style%}
+.row {
+  padding-bottom:50px;
+}
+.filter-reset-buttons {
+    display: flex;
+    align-items: flex-end;
+}
+.btn-secondary {
+  margin-left:20px;
+}
+{% endblock style%}
 
 
 
