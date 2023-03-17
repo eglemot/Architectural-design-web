@@ -7,6 +7,10 @@
   <form method="get">
     <div class="row">
       <div class="col-md-3 mb-3">
+        <label for="name">Filter by name:</label>
+        <input type="text" name="name" id="name" class="form-control" value="{{ request.GET.name }}">
+    </div>    
+      <div class="col-md-3 mb-3">
         <label for="min_bedrooms">Min. Bedrooms</label>
         <select name="min_bedrooms" id="min_bedrooms" class="form-control">
           <option value="">Any</option>
@@ -84,7 +88,7 @@
   <div class="form-group d-flex align-items-end">
     <form method="get" class="form-inline mb-3">
       <div class="form-group mr-2">
-        <button type="submit" class="btn btn-primary">Filter</button>
+        <button type="submit" class="btn btn-primary" style="text-align: center;">Filter</button>
       </div>
     </form>
     <div class="form-group">
@@ -108,12 +112,12 @@
         <table class="table mb-0">
           <tbody>
             <tr>
-              <td class="py-2"> {{ plan.min_bedrooms }}-{{ plan.max_bedrooms }} bed</td>
-              <td class="py-2">{{ plan.min_bathrooms }}-{{ plan.max_bathrooms }} bath</td>
+              <td class="py-2"><strong>{{ plan.min_bedrooms }}-{{ plan.max_bedrooms }}</strong> bed</td>
+              <td class="py-2"><strong>{{ plan.min_bathrooms }}-{{ plan.max_bathrooms }}</strong> bath</td>
             </tr>
             <tr>
-              <td class="py-2">{{ plan.floors }} story</td>
-              <td class="py-2">{{ plan.heated_sq_feet }} sq. feet</td>
+              <td class="py-2"><strong>{{ plan.floors }}</strong> story</td>
+              <td class="py-2"><strong>{{ plan.heated_sq_feet }}</strong> sq. feet</td>
             </tr>
           </tbody>
         </table>
@@ -134,6 +138,11 @@
 .filter-reset-buttons {
     display: flex;
     align-items: flex-end;
+    margin-top:2rem;
+}
+.btn-primary{
+  padding-right:5rem;
+  padding-left:5rem;
 }
 .btn-secondary {
   margin-left:20px;
