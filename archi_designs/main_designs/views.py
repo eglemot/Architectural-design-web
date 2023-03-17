@@ -25,9 +25,12 @@ def plan_list(request):
     bonus_room = request.GET.get('bonus_room')
     wrap_around_porch = request.GET.get('wrap_around_porch')
     style = request.GET.get('style')
+    name_query = request.GET.get('name')
 
     q_filter = Q()
 
+    if name_query:
+        q_filter &= Q(name__icontains=name_query)
     if min_bedrooms:
         q_filter &= Q(max_bedrooms__gte=int(min_bedrooms))
     if max_bedrooms:
