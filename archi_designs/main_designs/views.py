@@ -15,7 +15,8 @@ def plan_list(request):
     floors = request.GET.get('floors')
     min_bathrooms = request.GET.get('min_bathrooms')
     max_bathrooms = request.GET.get('max_bathrooms')
-    heated_sq_feet = request.GET.get('heated_sq_feet')
+    min_sq_feet = request.GET.get('heated_sq_feet')
+    max_sq_feet = request.GET.get('heated_sq_feet')
     basement = request.GET.get('basement')
     loft = request.GET.get('loft')
     walk_in_pantry = request.GET.get('walk_in_pantry')
@@ -39,8 +40,12 @@ def plan_list(request):
         q_filter &= Q(min_bathrooms__lte=float(max_bathrooms))
         if not min_bathrooms:
             q_filter &= Q(max_bathrooms__gte=float(max_bathrooms))
-    if heated_sq_feet:
-        q_filter &= Q(heated_sq_feet__gte=float(heated_sq_feet))
+    if 'min_sq_feet' in request.GET and request.GET['min_sq_feet']:
+        q_filter &= Q(heated_sq_feet__gte=float(request.GET['min_sq_feet']))
+    if 'max_sq_feet' in request.GET and request.GET['max_sq_feet']:
+        q_filter &= Q(heated_sq_feet__lte=float(request.GET['max_sq_feet']))
+    if floors:
+        q_filter &= Q(floors=int(floors))
     if basement:
         q_filter &= Q(basement=bool(basement))
     if loft:

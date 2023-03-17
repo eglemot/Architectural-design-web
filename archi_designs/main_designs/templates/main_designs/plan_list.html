@@ -6,11 +6,26 @@
     <div class="form-row">
       <div class="form-group col-md-3">
         <label for="min_bedrooms">Min. Bedrooms:</label>
-        <input type="number" name="min_bedrooms" id="min_bedrooms" class="form-control" min="0">
+        <select name="min_bedrooms" id="min_bedrooms" class="form-control">
+          <option value="">Any</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+        </select>
       </div>
       <div class="form-group col-md-3">
         <label for="max_bedrooms">Max. Bedrooms:</label>
-        <input type="number" name="max_bedrooms" id="max_bedrooms" class="form-control" min="0">
+        <select name="max_bedrooms" id="max_bedrooms" class="form-control">
+          <option value="">Any</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="6">6</option>
+        </select>
       </div>
       <div class="form-group col-md-3">
         <label for="floors">Floors:</label>
@@ -23,23 +38,46 @@
       </div>
       <div class="form-group col-md-3">
         <label for="min_bathrooms">Min. Bathrooms:</label>
-        <input type="number" name="min_bathrooms" id="min_bathrooms" class="form-control" step="0.5" min="0">
+        <select name="min_bathrooms" id="min_bathrooms" class="form-control">
+          <option value="">Any</option>
+          <option value="1">1</option>
+          <option value="1.5">1.5</option>
+          <option value="2">2</option>
+          <option value="2.5">2.5</option>
+          <option value="3">3</option>
+          <option value="3.5">3.5</option>
+          <option value="4">4</option>
+          <option value="4.5">4.5</option>
+          <option value="5">5</option>
+          <option value="5.5">5.5</option>
+          <option value="6">6</option>
+        </select>
       </div>
       <div class="form-group col-md-3">
         <label for="max_bathrooms">Max. Bathrooms:</label>
-        <input type="number" name="max_bathrooms" id="max_bathrooms" class="form-control" step="0.5" min="0">
-      </div>
-      <div class="form-group col-md-3">
-        <label for="heated_sq_feet">Min. Sq. Feet:</label>
-        <input type="number" name="heated_sq_feet" id="heated_sq_feet" class="form-control" step="0.1" min="0">
-      </div>
-      <div class="form-group col-md-3">
-        <label for="style">Style:</label>
-        <select name="style" id="style" class="form-control">
+        <select name="max_bathrooms" id="max_bathrooms" class="form-control">
           <option value="">Any</option>
-          <option value="barndominium">Barndominium</option>
+          <option value="1">1</option>
+          <option value="1.5">1.5</option>
+          <option value="2">2</option>
+          <option value="2.5">2.5</option>
+          <option value="3">3</option>
+          <option value="3.5">3.5</option>
+          <option value="4">4</option>
+          <option value="4.5">4.5</option>
+          <option value="5">5</option>
+          <option value="5.5">5.5</option>
+          <option value="6">6</option>
         </select>
       </div>
+      <div class="form-group col-md-3">
+        <label for="min_sq_feet">Min. Sq. Feet:</label>
+        <input type="number" name="min_sq_feet" id="min_sq_feet" class="form-control" min="0" placeholder="Enter min square feet">
+      </div>
+      <div class="form-group col-md-3">
+        <label for="max_sq_feet">Max. Sq. Feet:</label>
+        <input type="number" name="max_sq_feet" id="max_sq_feet" class="form-control" min="0" placeholder="Enter max square feet">
+      </div>      
 <!-- Filter form for buttons-->
 <form method="get" class="form-inline mb-3">
   <div class="form-group mr-2">
