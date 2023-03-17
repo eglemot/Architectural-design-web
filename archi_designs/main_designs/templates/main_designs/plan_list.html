@@ -1,29 +1,95 @@
 {% extends 'base.html' %}
-
 {% block content %}
-  <h1>Plan List</h1>
-
+<div class="container-fluid">
+  <!-- Filter form -->
   <form method="get">
-    <input type="text" name="q" placeholder="Search...">
-    <button type="submit">Search</button>
-  </form>
-
-  {% for plan in plans %}
-    <div>
-      <h2>{{ plan.name }}</h2>
-      {% if plan.plan_pictures.all %}
-        <img src="{{ plan.plan_pictures.first.image.url }}" alt="{{ plan.name }}">
-      {% else %}
-        <p>No picture available</p>
-      {% endif %}
-      <p>Bedrooms: {{ plan.min_bedrooms }} - {{ plan.max_bedrooms }}</p>
-      <p>Bathrooms: {{ plan.min_bathrooms }} - {{ plan.max_bathrooms }}</p>
-      <p>Floors: {{ plan.floors }}</p>
-      <p>Heated Sq. Feet: {{ plan.heated_sq_feet }}</p>
-      <p>{{ plan.description }}</p>
-      <a href="{{ plan.affiliate_link }}">Learn More</a>
+    <div class="form-row">
+      <div class="form-group col-md-3">
+        <label for="min_bedrooms">Min. Bedrooms:</label>
+        <input type="number" name="min_bedrooms" id="min_bedrooms" class="form-control" min="0">
+      </div>
+      <div class="form-group col-md-3">
+        <label for="max_bedrooms">Max. Bedrooms:</label>
+        <input type="number" name="max_bedrooms" id="max_bedrooms" class="form-control" min="0">
+      </div>
+      <div class="form-group col-md-3">
+        <label for="floors">Floors:</label>
+        <select name="floors" id="floors" class="form-control">
+          <option value="">Any</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+        </select>
+      </div>
+      <div class="form-group col-md-3">
+        <label for="min_bathrooms">Min. Bathrooms:</label>
+        <input type="number" name="min_bathrooms" id="min_bathrooms" class="form-control" step="0.5" min="0">
+      </div>
+      <div class="form-group col-md-3">
+        <label for="max_bathrooms">Max. Bathrooms:</label>
+        <input type="number" name="max_bathrooms" id="max_bathrooms" class="form-control" step="0.5" min="0">
+      </div>
+      <div class="form-group col-md-3">
+        <label for="heated_sq_feet">Min. Sq. Feet:</label>
+        <input type="number" name="heated_sq_feet" id="heated_sq_feet" class="form-control" step="0.1" min="0">
+      </div>
+      <div class="form-group col-md-3">
+        <label for="style">Style:</label>
+        <select name="style" id="style" class="form-control">
+          <option value="">Any</option>
+          <option value="barndominium">Barndominium</option>
+        </select>
+      </div>
+<!-- Filter form for buttons-->
+<form method="get" class="form-inline mb-3">
+  <div class="form-group mr-2">
+    <button type="submit" class="btn btn-primary">Filter</button>
+  </div>
+  <div class="form-group">
+    <a href="{% url 'plan_list' %}" class="btn btn-secondary">Reset</a>
+  </div>
+</form>
+  <!-- Plan list -->
+  <div class="row">
+    {% for plan in plans %}
+    <div class="col-md-4">
+      <div class="card plan-card">
+        {% with plan.plan_pictures.first as first_picture %}
+        {% if first_picture %}
+        <img src="{{ first_picture.image.url }}" alt="{{ plan.name }}">
+        {% endif %}
+        {% endwith %}
+        <div class="card-body">
+          <h5 class="card-title">{{ plan.name }}</h5>
+          <p class="card-text">Bedrooms: {{ plan.min_bedrooms }}-{{ plan.max_bedrooms }}</p>
+          <p class="card-text">Bathrooms: {{ plan.min_bathrooms }}-{{ plan.max_bathrooms }}</p>
+          <p class="card-text">Floors: {{ plan.floors }}</p>
+          <p class="card-text">Style: {{ plan.style }}</p>
+          <p class="card-text">Sq. Feet: {{ plan.heated_sq_feet }}</p>
+          <p class="card-text"><a href="{{ plan.affiliate_link }}" target="_blank" rel="nofollow">Buy Now</a></p>
+        </div>
+      </div>
     </div>
-  {% endfor %}
+    {% empty %}
+    <p>No plans found.</p>
+    {% endfor %}
+  </div>
+</div>
 {% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
 
 
