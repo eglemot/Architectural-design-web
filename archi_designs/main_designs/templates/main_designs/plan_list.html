@@ -7,10 +7,6 @@
   <form method="get">
     <div class="row">
       <div class="col-md-3 mb-3">
-        <label for="name">Filter by name:</label>
-        <input type="text" name="name" id="name" class="form-control" value="{{ request.GET.name }}">
-    </div>    
-      <div class="col-md-3 mb-3">
         <label for="min_bedrooms">Min. Bedrooms</label>
         <select name="min_bedrooms" id="min_bedrooms" class="form-control">
           <option value="">Any</option>
@@ -82,7 +78,39 @@
     <div class="form-group col-md-3">
         <label for="max_sq_feet">Max. Sq. Feet:</label>
         <input type="number" name="max_sq_feet" id="max_sq_feet" class="form-control" min="0" step="100" placeholder="Enter max square feet">
-    </div>    
+    </div>
+    <div class="col-md-3 mb-3">
+      <label for="name">Filter by name:</label>
+      <input type="text" name="name" id="name" class="form-control" value="{{ request.GET.name }}">
+  </div>    
+
+  <div class="form-group col-md-12">
+    <div class="d-flex justify-content-start">
+      <label class="form-label me-3">Features:</label>
+      <div class="me-3">
+        <input class="form-check-input" type="checkbox" name="basement" {% if basement %}checked{% endif %} id="basement">
+        <label class="form-check-label" for="basement">Basement</label>
+      </div>
+      <div class="me-3">
+        <input class="form-check-input" type="checkbox" name="loft" {% if loft %}checked{% endif %} id="loft">
+        <label class="form-check-label" for="loft">Loft</label>
+      </div>
+      <div class="me-3">
+        <input class="form-check-input" type="checkbox" name="walk_in_pantry" {% if walk_in_pantry %}checked{% endif %} id="walk_in_pantry">
+        <label class="form-check-label" for="walk_in_pantry">Walk-in pantry</label>
+      </div>
+      <div class="me-3">
+        <input class="form-check-input" type="checkbox" name="home_office" {% if home_office %}checked{% endif %} id="home_office">
+        <label class="form-check-label" for="home_office">Home office</label>
+      </div>
+      <div class="me-3">
+        <input class="form-check-input" type="checkbox" name="mudroom" {% if mudroom %}checked{% endif %} id="mudroom">
+        <label class="form-check-label" for="mudroom">Mudroom</label>
+      </div>
+      <!-- Add other features here -->
+    </div>
+  </div>
+
 <!-- Filter form for buttons-->
 <div class="form-group col-md-3 filter-reset-buttons">
   <div class="form-group d-flex align-items-end">
@@ -101,7 +129,7 @@
 <div class="row">
   {% for plan in plans %}
   <div class="col-md-4 mb-4">
-    <a>
+    <a href="{% url 'plan_detail' plan.id %}">
     <div class="card plan-card">
       {% with plan.plan_pictures.first as first_picture %}
       {% if first_picture %}
