@@ -77,12 +77,12 @@
       </div>
       <div class="form-group col-md-3">
         <label for="min_sq_feet">Min. Sq. Feet:</label>
-        <input type="number" name="min_sq_feet" id="min_sq_feet" class="form-control" min="0" placeholder="Enter min square feet">
-      </div>
-      <div class="form-group col-md-3">
+        <input type="number" name="min_sq_feet" id="min_sq_feet" class="form-control" min="0" step="100" placeholder="Enter min square feet">
+    </div>
+    <div class="form-group col-md-3">
         <label for="max_sq_feet">Max. Sq. Feet:</label>
-        <input type="number" name="max_sq_feet" id="max_sq_feet" class="form-control" min="0" placeholder="Enter max square feet">
-      </div>      
+        <input type="number" name="max_sq_feet" id="max_sq_feet" class="form-control" min="0" step="100" placeholder="Enter max square feet">
+    </div>    
 <!-- Filter form for buttons-->
 <div class="form-group col-md-3 filter-reset-buttons">
   <div class="form-group d-flex align-items-end">
@@ -101,6 +101,7 @@
 <div class="row">
   {% for plan in plans %}
   <div class="col-md-4 mb-4">
+    <a>
     <div class="card plan-card">
       {% with plan.plan_pictures.first as first_picture %}
       {% if first_picture %}
@@ -108,21 +109,35 @@
       {% endif %}
       {% endwith %}
       <div class="card-body p-0 m-0">
-        <h5 class="card-title bg-primary py-2 pl-3 mb-0 text-truncate">{{ plan.name }}</h5>
+        
         <table class="table mb-0">
           <tbody>
             <tr>
-              <td class="py-2"><strong>{{ plan.min_bedrooms }}-{{ plan.max_bedrooms }}</strong> bed</td>
-              <td class="py-2"><strong>{{ plan.min_bathrooms }}-{{ plan.max_bathrooms }}</strong> bath</td>
+              <td class="py-2">
+                {% if plan.min_bedrooms == plan.max_bedrooms %}
+                  <strong>{{ plan.min_bedrooms }}</strong> bed
+                {% else %}
+                  <strong>{{ plan.min_bedrooms }}-{{ plan.max_bedrooms }}</strong> bed
+                {% endif %}
+              </td>
+              <td class="py-2">
+                {% if plan.min_bathrooms == plan.max_bathrooms %}
+                  <strong>{{ plan.min_bathrooms }}</strong> bath
+                {% else %}
+                  <strong>{{ plan.min_bathrooms }}-{{ plan.max_bathrooms }}</strong> bath
+                {% endif %}
+              </td>
+              
             </tr>
             <tr>
               <td class="py-2"><strong>{{ plan.floors }}</strong> story</td>
-              <td class="py-2"><strong>{{ plan.heated_sq_feet }}</strong> sq. feet</td>
+              <td class="py-2"><strong>{{ plan.formatted_heated_sq_feet }}</strong> sq. feet</td>
             </tr>
           </tbody>
         </table>
       </div>
     </div>
+  </a>
   </div>
   {% empty %}
   <p>No plans found</p>
@@ -188,6 +203,14 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+.plan-card {
+  transition: transform 0.3s;
+}
+
+.plan-card:hover {
+  transform: scale(1.05);
+  cursor: pointer;
 }
 {% endblock style%}
 

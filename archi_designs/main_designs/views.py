@@ -15,8 +15,6 @@ def plan_list(request):
     floors = request.GET.get('floors')
     min_bathrooms = request.GET.get('min_bathrooms')
     max_bathrooms = request.GET.get('max_bathrooms')
-    min_sq_feet = request.GET.get('heated_sq_feet')
-    max_sq_feet = request.GET.get('heated_sq_feet')
     basement = request.GET.get('basement')
     loft = request.GET.get('loft')
     walk_in_pantry = request.GET.get('walk_in_pantry')

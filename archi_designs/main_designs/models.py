@@ -18,7 +18,7 @@ class Plan(models.Model):
     floors = models.CharField(max_length=10, choices=FLOOR_CHOICES)
     min_bathrooms = models.DecimalField(max_digits=3, decimal_places=1, null=True, blank=True)
     max_bathrooms = models.DecimalField(max_digits=3, decimal_places=1, null=True, blank=True)
-    heated_sq_feet = models.DecimalField(max_digits=20, decimal_places=3, null=True, blank=True)
+    heated_sq_feet = models.IntegerField(null=True, blank=True)
     basement = models.BooleanField(default=False)
     loft = models.BooleanField(default=False)
     walk_in_pantry = models.BooleanField(default=False)
@@ -32,6 +32,9 @@ class Plan(models.Model):
 
     def __str__(self) -> str:
         return self.name
+    
+    def formatted_heated_sq_feet(self):
+        return str(self.heated_sq_feet)[:1] + ',' + str(self.heated_sq_feet)[1:]
 
 class FloorPicture(models.Model):
     plan = models.ForeignKey(Plan, on_delete=models.CASCADE, related_name='floor_pictures')
