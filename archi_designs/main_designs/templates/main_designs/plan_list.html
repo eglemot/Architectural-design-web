@@ -125,11 +125,12 @@
   </div>
 </div>
 </div>
+
 <!-- Plan list -->
 <div class="row">
   {% for plan in plans %}
   <div class="col-md-4 mb-4">
-    <a href="{% url 'plan_detail' plan.id %}">
+    <a href="{% url 'plan_detail' plan.id %}" class="no-underline">
     <div class="card plan-card">
       {% with plan.plan_pictures.first as first_picture %}
       {% if first_picture %}
@@ -174,6 +175,7 @@
 </div>
 </form>
 {% endblock %}
+
 {% block style%}
 .row {
   padding-bottom:50px;
@@ -240,6 +242,20 @@
   transform: scale(1.05);
   cursor: pointer;
 }
+.no-underline {
+  text-decoration: none;
+}
+.filter-container {
+  display: none; /* Hide filter container by default */
+}
+
+@media (max-width: 767.98px) {
+  /* Show filter container when button is clicked */
+  .filter-container.show {
+    display: block;
+  }
+}
+
 {% endblock style%}
 
 

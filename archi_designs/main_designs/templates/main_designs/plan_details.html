@@ -1,0 +1,185 @@
+{% extends 'base.html' %}
+{% load static i18n %}
+{% block content %}
+<div class="row mt-3">
+    <div class="col-md-6">
+        <!-- Carousel -->
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-interval="5000">
+            <ol class="carousel-indicators">
+                {% for picture in plan.plan_pictures.all %}
+                    <li data-target="#carouselExampleIndicators" data-slide-to="{{ forloop.counter0 }}" {% if forloop.first %}class="active"{% endif %}></li>
+                {% endfor %}
+            </ol>
+            <div class="carousel-inner">
+                {% for picture in plan.plan_pictures.all %}
+                    <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                        <img src="{{ picture.image.url }}" class="d-block w-100" alt="{{ plan.name }}" style="max-height: 500px;">
+                    </div>
+                {% endfor %}
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div>
+    <div class="col-md-6">
+<!-- Main details -->
+<div class="row mt-3">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Main Details</h5>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <img src="{% static 'main_designs/icons/bed.png' %}" alt="Bedrooms icon" height="20" width="20">
+              <strong>Bedrooms:</strong> {{ plan.min_bedrooms }} - {{ plan.max_bedrooms }}
+            </li>
+            <li class="list-group-item">
+              <img src="{% static 'main_designs/icons/bath.png' %}" alt="Bathrooms icon" height="20" width="20">
+              <strong>Bathrooms:</strong> {{ plan.min_bathrooms }} - {{ plan.max_bathrooms }}
+            </li>
+            <li class="list-group-item">
+              <img src="{% static 'main_designs/icons/story.png' %}" alt="Floors icon" height="20" width="20">
+              <strong>Floors:</strong> {{ plan.floors }}
+            </li>
+            <li class="list-group-item">
+              <img src="{% static 'main_designs/icons/size.png' %}" alt="Heated sq. feet icon" height="20" width="20">
+              <strong>Heated sq. feet:</strong> {{ plan.formatted_heated_sq_feet }}
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+          <!-- Buy button with affiliate link -->
+          <div class="row mt-3">
+            <div class="col-md-12">
+                <a href="{{ plan.affiliate_link }}" class="btn btn-primary btn-lg">Buy now</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Other parameters -->
+<!-- Other parameters -->
+<div class="col-md-6">
+    <ul class="list-inline">
+      {% if plan.walk_in_pantry %}
+        <li class="list-inline-item"><i class="bi bi-check"></i> Walk-in pantry</li>
+      {% endif %}
+      {% if plan.home_office %}
+        <li class="list-inline-item"><i class="bi bi-check"></i> Home office</li>
+      {% endif %}
+      {% if plan.mudroom %}
+        <li class="list-inline-item"><i class="bi bi-check"></i> Mudroom</li>
+      {% endif %}
+      {% if plan.bonus_room %}
+        <li class="list-inline-item"><i class="bi bi-check"></i> Bonus room</li>
+      {% endif %}
+      {% if plan.wrap_around_porch %}
+        <li class="list-inline-item"><i class="bi bi-check"></i> Wrap-around porch</li>
+      {% endif %}
+    </ul>
+  </div>
+  
+                	<!-- Floor pictures -->
+	{% if plan.floors > 0 %}
+    {% for floor_picture in floor_pictures %}
+        {% if floor_picture.floor_number == plan.floors %}
+            <div class="row mt-3">
+                <div class="col-md-12">
+                    <h2>{{ "Floor " }}{{ floor_picture.floor_number }}</h2>
+                    <img src="{{ floor_picture.image.url }}" class="img-fluid">
+                </div>
+            </div>
+        {% endif %}
+    {% endfor %}
+{% else %}
+    <div class="row mt-3">
+        <div class="col-md-12">
+            <h2>Additional pictures</h2>
+        </div>
+    </div>
+{% endif %}
+
+</div>
+{% endblock content %}
+{% block style%}
+/* Style for the carousel */
+.carousel-item img {
+  object-fit: cover;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-color: rgba(0, 0, 0, 0.3);
+  padding: 12px;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+  width: 7%;
+}
+
+/* Style for the main details card */
+.card-title {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.list-group-item {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 1.25rem;
+  border-top: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+.list-group-item img {
+  margin-right: 0.5rem;
+}
+
+/* Style for the other parameters list */
+.list-group {
+  margin-top: 2rem;
+}
+
+.list-group-item i {
+  color: #28a745;
+  font-size: 1.25rem;
+  margin-right: 0.5rem;
+}
+ul.list-inline {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    margin: 2rem;
+  }
+  
+  ul.list-inline li {
+    display: flex;
+    align-items: center;
+    margin: 0 10px;
+    font-size: 16px;
+    color: #4a4a4a;
+    font-weight: 500;
+  }
+  
+  ul.list-inline li i {
+    margin-right: 10px;
+    color: #28a745;
+  }
+  
+{% endblock style%}
+
+
+
+
+
+
+

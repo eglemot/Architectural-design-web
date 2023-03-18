@@ -1,6 +1,7 @@
 from django.shortcuts import render
-from .models import Plan
 from django.db.models import Q
+from django.shortcuts import render, get_object_or_404
+from .models import Plan, FloorPicture, PlanPicture
 
 
 def home(request):
@@ -67,6 +68,13 @@ def plan_list(request):
     plans = Plan.objects.filter(q_filter)
 
     return render(request, 'main_designs/plan_list.html', {'plans': plans})
+
+def plan_detail(request, plan_id):
+    plan = get_object_or_404(Plan, id=plan_id)
+    floor_pictures = FloorPicture.objects.filter(plan=plan)
+    plan_pictures = PlanPicture.objects.filter(plan=plan)
+    return render(request, 'main_designs/plan_details.html', {'plan': plan, 'floor_pictures': floor_pictures, 'plan_pictures': plan_pictures})
+
 
 
 
