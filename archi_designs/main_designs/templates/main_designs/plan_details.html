@@ -4,8 +4,11 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.11.0/baguetteBox.min.css" crossorigin="anonymous" />
 {% endblock %}
 {% block content %}
+<div class="plan-details-name">
+<h1>{{ plan.name }}</h1>
+</div>
 <div class="row mt-3">
-    <div class="col-md-6">
+    <div class="col-md-8">
         <!-- Carousel -->
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-interval="5000">
             <ol class="carousel-indicators">
@@ -16,7 +19,7 @@
             <div class="carousel-inner">
                 {% for picture in plan.plan_pictures.all %}
                     <div class="carousel-item {% if forloop.first %}active{% endif %}">
-                        <img src="{{ picture.image.url }}" class="d-block w-100" alt="{{ plan.name }}" style="max-height: 500px;">
+                        <img src="{{ picture.image.url }}" class="d-block w-100" alt="{{ plan.name }}" style="max-height: 550px;">
                     </div>
                 {% endfor %}
             </div>
@@ -30,27 +33,35 @@
             </a>
         </div>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-4">
 <!-- Main details -->
 <div class="row mt-3">
-    <div class="col-md-6">
+    <div class="col-md-10">
       <div class="card">
         <div class="card-body">
           <h5 class="card-title">Main Details</h5>
           <ul class="list-group list-group-flush">
-            <li class="list-group-item">
+            <li class="list-group-item" style="display: inline-block;">
               <img src="{% static 'main_designs/icons/bed.png' %}" alt="Bedrooms icon" height="20" width="20">
-              <strong>Bedrooms:</strong> {{ plan.min_bedrooms }} - {{ plan.max_bedrooms }}
+              {% if plan.min_bedrooms == plan.max_bedrooms %}
+              <strong>Bedrooms: </strong>{{ plan.min_bedrooms }}
+            {% else %}
+              <strong>Bedrooms: </strong>{{ plan.min_bedrooms }}-{{ plan.max_bedrooms }}
+            {% endif %}
             </li>
-            <li class="list-group-item">
+            <li class="list-group-item" style="display: inline-block;">
               <img src="{% static 'main_designs/icons/bath.png' %}" alt="Bathrooms icon" height="20" width="20">
-              <strong>Bathrooms:</strong> {{ plan.min_bathrooms }} - {{ plan.max_bathrooms }}
+              {% if plan.min_bathrooms == plan.max_bathrooms %}
+              <strong> Bathrooms: </strong>{{ plan.min_bathrooms }}
+            {% else %}
+              <strong>Bathrooms: </strong>{{ plan.min_bathrooms }}-{{ plan.max_bathrooms }}
+            {% endif %}
             </li>
-            <li class="list-group-item">
+            <li class="list-group-item" style="display: inline-block;">
               <img src="{% static 'main_designs/icons/story.png' %}" alt="Floors icon" height="20" width="20">
               <strong>Floors:</strong> {{ plan.floors }}
             </li>
-            <li class="list-group-item">
+            <li class="list-group-item" style="display: inline-block;">
               <img src="{% static 'main_designs/icons/size.png' %}" alt="Heated sq. feet icon" height="20" width="20">
               <strong>Heated sq. feet:</strong> {{ plan.formatted_heated_sq_feet }}
             </li>
@@ -59,34 +70,42 @@
       </div>
     </div>
   </div>
-          <!-- Buy button with affiliate link -->
+  <!-- Other parameters -->
+<div class="col-md-6">
+  <ul class="list-inline">
+    {% if plan.walk_in_pantry %}
+      <li class="list-inline-item"><i class="bi bi-check"></i> Walk-in pantry</li>
+    {% endif %}
+    {% if plan.home_office %}
+      <li class="list-inline-item"><i class="bi bi-check"></i> Home office</li>
+    {% endif %}
+    {% if plan.mudroom %}
+      <li class="list-inline-item"><i class="bi bi-check"></i> Mudroom</li>
+    {% endif %}
+    {% if plan.bonus_room %}
+      <li class="list-inline-item"><i class="bi bi-check"></i> Bonus room</li>
+    {% endif %}
+    {% if plan.wrap_around_porch %}
+      <li class="list-inline-item"><i class="bi bi-check"></i> Wrap-around porch</li>
+    {% endif %}
+  </ul>
+</div>
+
+          <!-- Order now button with affiliate link -->
           <div class="row mt-3">
-            <div class="col-md-12">
-                <a href="{{ plan.affiliate_link }}" class="btn btn-primary btn-lg">Buy now</a>
+            <div class="col-md-6">
+                <a href="{{ plan.affiliate_link }}" class="btn btn-primary btn-lg order-now-btn">ORDER NOW</a>
             </div>
         </div>
     </div>
 </div>
-<!-- Other parameters -->
-<div class="col-md-6">
-    <ul class="list-inline">
-      {% if plan.walk_in_pantry %}
-        <li class="list-inline-item"><i class="bi bi-check"></i> Walk-in pantry</li>
-      {% endif %}
-      {% if plan.home_office %}
-        <li class="list-inline-item"><i class="bi bi-check"></i> Home office</li>
-      {% endif %}
-      {% if plan.mudroom %}
-        <li class="list-inline-item"><i class="bi bi-check"></i> Mudroom</li>
-      {% endif %}
-      {% if plan.bonus_room %}
-        <li class="list-inline-item"><i class="bi bi-check"></i> Bonus room</li>
-      {% endif %}
-      {% if plan.wrap_around_porch %}
-        <li class="list-inline-item"><i class="bi bi-check"></i> Wrap-around porch</li>
-      {% endif %}
-    </ul>
+<!-- CUSTOMIZE button with affiliate link -->
+<div class="row mt-4">
+  <div class="col-md-8">
+      <a href="{{ plan.affiliate_link }}" class="btn btn-primary btn-lg customize-plan-btn">CUSTOMIZE THIS PLAN</a>
   </div>
+</div>
+
 <!-- Gallery -->
 <div class="col-md-10">
     <h1>Small Gallery</h1>
@@ -135,7 +154,15 @@
 </div>
 {% endblock content %}
 {% block style%}
+
 /* Style for the carousel */
+@media screen and (max-width: 767px) {
+  #carouselExampleIndicators .carousel-item img {
+    max-height: 300px;
+  }
+}
+
+
 .carousel-item img {
   object-fit: cover;
 }
@@ -152,6 +179,7 @@
 }
 
 /* Style for the main details card */
+
 .card-title {
   font-size: 1.25rem;
   margin-bottom: 1rem;
@@ -171,7 +199,7 @@
 
 /* Style for the other parameters list */
 .list-group {
-  margin-top: 2rem;
+  margin-top: 1rem;
 }
 
 .list-group-item i {
@@ -184,16 +212,15 @@ ul.list-inline {
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
-    margin: 2rem;
   }
   
   ul.list-inline li {
     display: flex;
     align-items: center;
-    margin: 0 10px;
-    font-size: 16px;
+    font-size: 18px;
     color: #4a4a4a;
     font-weight: 500;
+    margin-top: 1rem;
   }
   
   ul.list-inline li i {
@@ -254,7 +281,16 @@ ul.list-inline {
 .gallery-item:hover .overlay {
     opacity: 1;
 }
-
+.customize-plan-btn {
+  width:100%;
+}
+.order-now-btn{
+  width:100%;
+}
+.plan-details-name{
+  text-align:center;
+  margin-bottom:2rem;
+}
 {% endblock style%}
 
 
