@@ -106,8 +106,27 @@
   </div>
 </div>
 
-<!-- Gallery -->
+<!-- Floor pictures -->
 <div class="col-md-10">
+  <div class="text-center">
+    <h2>Floor Plan</h2>
+  </div>
+  {% for floor_picture in floor_pictures %}
+    {% if floor_picture.floor_number == 1 %}
+      <h3>Main Floor</h3>
+    {% elif floor_picture.floor_number == 2 %}
+      <h3>Second Floor</h3>
+    {% elif floor_picture.floor_number == 3 %}
+      <h3>Third Floor</h3>
+    {% endif %}
+    <div class="d-flex justify-content-center mb-3">
+      <img src="{{ floor_picture.image.url }}" alt="{{ floor_picture.plan.name }} {% if floor_picture.floor_number == 1 %}Main Floor{% elif floor_picture.floor_number == 2 %}Upper Floor{% elif floor_picture.floor_number == 3 %}Top Floor{% endif %}" class="img-fluid">
+    </div>
+  {% endfor %}
+</div>
+
+<!-- Gallery -->
+<div class="col-md-11">
     <h1>Small Gallery</h1>
     <div class="gallery">
         {% for floor_picture in floor_pictures %}
@@ -130,26 +149,6 @@
     baguetteBox.run('.gallery');
 </script>
 </div>
-
-                	<!-- Floor pictures -->
-	{% if plan.floors > 0 %}
-    {% for floor_picture in floor_pictures %}
-        {% if floor_picture.floor_number == plan.floors %}
-            <div class="row mt-3">
-                <div class="col-md-12">
-                    <h2>{{ "Floor " }}{{ floor_picture.floor_number }}</h2>
-                    <img src="{{ floor_picture.image.url }}" class="img-fluid">
-                </div>
-            </div>
-        {% endif %}
-    {% endfor %}
-{% else %}
-    <div class="row mt-3">
-        <div class="col-md-12">
-            <h2>Additional pictures</h2>
-        </div>
-    </div>
-{% endif %}
 
 </div>
 {% endblock content %}
