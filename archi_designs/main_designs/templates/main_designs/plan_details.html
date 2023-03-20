@@ -90,8 +90,7 @@
     {% endif %}
   </ul>
 </div>
-
-          <!-- Order now button with affiliate link -->
+<!-- Order now button with affiliate link -->
           <div class="row mt-3">
             <div class="col-md-6">
                 <a href="{{ plan.affiliate_link }}" class="btn btn-primary btn-lg order-now-btn">ORDER NOW</a>
@@ -105,7 +104,6 @@
       <a href="{{ plan.affiliate_link }}" class="btn btn-primary btn-lg customize-plan-btn">CUSTOMIZE THIS PLAN</a>
   </div>
 </div>
-
 <!-- Floor pictures -->
 <div class="col-md-10">
   <div class="text-center">
@@ -120,9 +118,27 @@
       <h3>Third Floor</h3>
     {% endif %}
     <div class="d-flex justify-content-center mb-3">
-      <img src="{{ floor_picture.image.url }}" alt="{{ floor_picture.plan.name }} {% if floor_picture.floor_number == 1 %}Main Floor{% elif floor_picture.floor_number == 2 %}Upper Floor{% elif floor_picture.floor_number == 3 %}Top Floor{% endif %}" class="img-fluid">
+      <a href="{{ floor_picture.image.url }}" data-fancybox="{{ floor_picture.plan.name }} {% if floor_picture.floor_number == 1 %}Main Floor{% elif floor_picture.floor_number == 2 %}Upper Floor{% elif floor_picture.floor_number == 3 %}Top Floor{% endif %}" data-caption="{{ floor_picture.plan.name }} {% if floor_picture.floor_number == 1 %}Main Floor{% elif floor_picture.floor_number == 2 %}Upper Floor{% elif floor_picture.floor_number == 3 %}Top Floor{% endif %}">
+        <img src="{{ floor_picture.image.url }}" alt="{{ floor_picture.plan.name }} {% if floor_picture.floor_number == 1 %}Main Floor{% elif floor_picture.floor_number == 2 %}Upper Floor{% elif floor_picture.floor_number == 3 %}Top Floor{% endif %}" class="img-fluid">
+      </a>
     </div>
   {% endfor %}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css"/>
+  <script>
+    $("[data-fancybox]").fancybox({
+      buttons: [
+        "zoom",
+        "slideShow",
+        "fullScreen",
+        "thumbs",
+        "close"
+      ],
+      infobar: true,
+      clickSlide: false,
+      clickOutside: false
+    });
+  </script>
 </div>
 <!-- Gallery -->
 <div class="col-md-12">
@@ -279,7 +295,7 @@ ul.list-inline {
 /* Style for the gallery */
 .gallery {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(100px, 0.33fr));
+    grid-template-columns: repeat(auto-fill, minmax(100px, 0.5fr));
     gap: 10px;
     margin-top: 20px;
     width: 100%;
