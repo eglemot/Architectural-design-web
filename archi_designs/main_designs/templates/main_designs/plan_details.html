@@ -106,23 +106,19 @@
 </div>
 <!-- Floor pictures -->
 <div class="col-md-10">
-  <div class="text-center">
+  <div class="floor-plan-h mt-5">
     <h2>Floor Plan</h2>
   </div>
-  {% for floor_picture in floor_pictures %}
-    {% if floor_picture.floor_number == 1 %}
-      <h3>Main Floor</h3>
-    {% elif floor_picture.floor_number == 2 %}
-      <h3>Second Floor</h3>
-    {% elif floor_picture.floor_number == 3 %}
-      <h3>Third Floor</h3>
-    {% endif %}
-    <div class="d-flex justify-content-center mb-3">
-      <a href="{{ floor_picture.image.url }}" data-fancybox="{{ floor_picture.plan.name }} {% if floor_picture.floor_number == 1 %}Main Floor{% elif floor_picture.floor_number == 2 %}Upper Floor{% elif floor_picture.floor_number == 3 %}Top Floor{% endif %}" data-caption="{{ floor_picture.plan.name }} {% if floor_picture.floor_number == 1 %}Main Floor{% elif floor_picture.floor_number == 2 %}Upper Floor{% elif floor_picture.floor_number == 3 %}Top Floor{% endif %}">
-        <img src="{{ floor_picture.image.url }}" alt="{{ floor_picture.plan.name }} {% if floor_picture.floor_number == 1 %}Main Floor{% elif floor_picture.floor_number == 2 %}Upper Floor{% elif floor_picture.floor_number == 3 %}Top Floor{% endif %}" class="img-fluid">
-      </a>
-    </div>
-  {% endfor %}
+  <div class="floor-pictures-list">
+    {% for floor_picture in floor_pictures %}
+      <div class="floor-picture">
+        <h3>{% if floor_picture.floor_number == 1 %}Main Floor{% elif floor_picture.floor_number == 2 %}Upper Floor{% elif floor_picture.floor_number == 3 %}Top Floor{% endif %}</h3>
+        <a href="{{ floor_picture.image.url }}" data-fancybox="{{ floor_picture.plan.name }} - {% if floor_picture.floor_number == 1 %}Main Floor{% elif floor_picture.floor_number == 2 %}Upper Floor{% elif floor_picture.floor_number == 3 %}Top Floor{% endif %}" data-caption="{{ floor_picture.plan.name }} - {% if floor_picture.floor_number == 1 %}Main Floor{% elif floor_picture.floor_number == 2 %}Upper Floor{% elif floor_picture.floor_number == 3 %}Top Floor{% endif %}">
+          <img src="{{ floor_picture.image.url }}" alt="{{ floor_picture.plan.name }} - {% if floor_picture.floor_number == 1 %}Main Floor{% elif floor_picture.floor_number == 2 %}Upper Floor{% elif floor_picture.floor_number == 3 %}Top Floor{% endif %}}" class="img-fluid">
+        </a>
+      </div>
+    {% endfor %}
+  </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css"/>
   <script>
@@ -142,7 +138,7 @@
 </div>
 <!-- Gallery -->
 <div class="col-md-12">
-  <h1>Small Gallery</h1>
+  <h1>Gallery</h1>
   <div class="gallery">
       {% for plan_picture in plan_pictures|slice:":6" %}
       <div class="gallery-item">
@@ -209,14 +205,12 @@
 </div>
 {% endblock content %}
 {% block style%}
-
 /* Style for the carousel */
 @media screen and (max-width: 767px) {
   #carouselExampleIndicators .carousel-item img {
     max-height: 300px;
   }
 }
-
 
 .carousel-item img {
   object-fit: cover;
@@ -361,6 +355,24 @@ ul.list-inline {
 .plan-details-name{
   text-align:center;
   margin-bottom:2rem;
+}
+.floor-pictures-list {
+  margin-top: 2rem;
+}
+.floor-picture {
+  margin-bottom: 3rem;
+  text-align: left;
+}
+.floor-picture h3 {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+.floor-picture img {
+  max-width: 100%;
+  max-height: 800px;
+  object-fit: contain;
+  display: block;
+  margin: 0;
 }
 {% endblock style%}
 
