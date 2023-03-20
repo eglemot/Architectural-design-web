@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.db.models import Q
 from django.shortcuts import render, get_object_or_404
 from .models import Plan, FloorPicture, PlanPicture
+from django.core.paginator import Paginator
+
 
 
 def home(request):
@@ -66,8 +68,11 @@ def plan_list(request):
         q_filter &= Q(style=style)
 
     plans = Plan.objects.filter(q_filter)
+    paginator = Paginator(plans, 12)
+    page = request.GET.get('page')
+    plans_paged = paginator.get_page(page)
 
-    return render(request, 'main_designs/plan_list.html', {'plans': plans})
+    return render(request, 'main_designs/plan_list.html', {'plans': plans_paged})
 
 def plan_detail(request, plan_id):
     plan = get_object_or_404(Plan, id=plan_id)

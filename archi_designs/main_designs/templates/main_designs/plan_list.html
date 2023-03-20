@@ -142,7 +142,7 @@
             </div>
           </div>
         </div>
-
+        {% include 'main_designs/includes/paginator_fp.html' %}
 <!-- Plan list -->
 <div class="row">
   {% for plan in plans %}
@@ -192,9 +192,9 @@
   {% empty %}
   <p>No plans found</p>
   {% endfor %}
+  {% include 'main_designs/includes/paginator_pages.html' %}
 </form>
 {% endblock %}
-
 {% block style%}
 .row {
   padding-bottom:50px;
@@ -274,7 +274,6 @@
     display: block;
   }
 }
-
 {% endblock style%}
 
 
