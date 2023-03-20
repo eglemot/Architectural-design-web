@@ -73,7 +73,15 @@ def plan_detail(request, plan_id):
     plan = get_object_or_404(Plan, id=plan_id)
     floor_pictures = FloorPicture.objects.filter(plan=plan)
     plan_pictures = PlanPicture.objects.filter(plan=plan)
-    return render(request, 'main_designs/plan_details.html', {'plan': plan, 'floor_pictures': floor_pictures, 'plan_pictures': plan_pictures})
+
+    related_plans = Plan.objects.filter(min_bedrooms=plan.min_bedrooms).exclude(id=plan.id).order_by('?')[:4]
+
+    return render(request, 'main_designs/plan_details.html', {
+        'plan': plan, 
+        'floor_pictures': floor_pictures, 
+        'plan_pictures': plan_pictures,
+        'related_plans': related_plans,
+    })
 
 
 
