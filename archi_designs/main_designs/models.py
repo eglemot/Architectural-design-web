@@ -34,7 +34,12 @@ class Plan(models.Model):
         return self.name
     
     def formatted_heated_sq_feet(self):
-        return str(self.heated_sq_feet)[:1] + ',' + str(self.heated_sq_feet)[1:]
+        heated_sq_feet = str(self.heated_sq_feet)
+        if len(heated_sq_feet) < 4:
+            return heated_sq_feet
+        else:
+            return heated_sq_feet[:1] + ',' + heated_sq_feet[1:]
+
 
 class FloorPicture(models.Model):
     plan = models.ForeignKey(Plan, on_delete=models.CASCADE, related_name='floor_pictures')
