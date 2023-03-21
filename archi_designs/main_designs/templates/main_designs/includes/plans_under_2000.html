@@ -1,56 +1,84 @@
 {% load static i18n %}
+
 <div class="row">
     <div class="col-md-12">
       <h2>Plans under 2000 Sq Ft</h2>
       <hr class="my-4">
     </div>
-  </div>
+</div>
 
-<div class="row justify-content-between">
-{% for plan in under_2000 %}
-    <div class="col-md-3 mb-4">
-    <a href="{{ plan.affiliate_link }}" class="no-underline">
-        <div class="card plan-card">
-        <img src="{{ plan.plan_pictures.first.image.url }}" alt="{{ plan.name }}">
-        <div class="card-body p-0 m-0">
-            <div class="card-title">
-            <span>{{ plan.name }}</span>
+<div id="under-2000-carousel" class="carousel slide">
+    <div class="carousel-inner">
+        {% for plan in under_2000 %}
+        {% if forloop.first %}
+        <div class="carousel-item active">
+            <div class="row justify-content-between">
+        {% endif %}
+                <div class="col-md-3 mb-4">
+                    <a href="{{ plan.affiliate_link }}" class="no-underline">
+                        <div class="card plan-card">
+                            <img src="{{ plan.plan_pictures.first.image.url }}" alt="{{ plan.name }}">
+                            <div class="card-body p-0 m-0">
+                                <div class="card-title">
+                                    <span>{{ plan.name }}</span>
+                                </div>
+                                <table class="table mb-0">
+                                    <tbody>
+                                        <tr>
+                                            <td class="py-2">
+                                                {% if plan.min_bedrooms == plan.max_bedrooms %}
+                                                <img src="{% static 'main_designs/icons/bed.png' %}" alt="Bedrooms icon" height="20" width="20">
+                                                <strong>{{ plan.min_bedrooms }}</strong> bed
+                                                {% else %}
+                                                <img src="{% static 'main_designs/icons/bed.png' %}" alt="Bedrooms icon" height="20" width="20">
+                                                <strong>{{ plan.min_bedrooms }}-{{ plan.max_bedrooms }}</strong> bed
+                                                {% endif %}
+                                            </td>
+                                            <td class="py-2">
+                                                {% if plan.min_bathrooms == plan.max_bathrooms %}
+                                                <img src="{% static 'main_designs/icons/bath.png' %}" alt="Bathrooms icon" height="20" width="20">
+                                                <strong>{{ plan.min_bathrooms }}</strong> bath
+                                                {% else %}
+                                                <img src="{% static 'main_designs/icons/bath.png' %}" alt="Bathrooms icon" height="20" width="20">
+                                                <strong>{{ plan.min_bathrooms }}-{{ plan.max_bathrooms }}</strong> bath
+                                                {% endif %}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="py-2"><img src="{% static 'main_designs/icons/story.png' %}" alt="Floors icon" height="20" width="20"> <strong>{{ plan.floors }}</strong> story</td>
+                                            <td class="py-2"><img src="{% static 'main_designs/icons/size.png' %}" alt="Heated sq. feet icon" height="20" width="20"> <strong>{{ plan.formatted_heated_sq_feet }}</strong> sq. feet</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+        {% if forloop.counter|divisibleby:4 and not forloop.last %}
             </div>
-            <table class="table mb-0">
-            <tbody>
-                <tr>
-                <td class="py-2">
-                    {% if plan.min_bedrooms == plan.max_bedrooms %}
-                    <img src="{% static 'main_designs/icons/bed.png' %}" alt="Bedrooms icon" height="20" width="20">
-                    <strong>{{ plan.min_bedrooms }}</strong> bed
-                    {% else %}
-                    <img src="{% static 'main_designs/icons/bed.png' %}" alt="Bedrooms icon" height="20" width="20">
-                    <strong>{{ plan.min_bedrooms }}-{{ plan.max_bedrooms }}</strong> bed
-                    {% endif %}
-                </td>
-                <td class="py-2">
-                    {% if plan.min_bathrooms == plan.max_bathrooms %}
-                    <img src="{% static 'main_designs/icons/bath.png' %}" alt="Bathrooms icon" height="20" width="20">
-                    <strong>{{ plan.min_bathrooms }}</strong> bath
-                    {% else %}
-                    <img src="{% static 'main_designs/icons/bath.png' %}" alt="Bathrooms icon" height="20" width="20">
-                    <strong>{{ plan.min_bathrooms }}-{{ plan.max_bathrooms }}</strong> bath
-                    {% endif %}
-                </td>
-                </tr>
-                <tr>
-                <td class="py-2"><img src="{% static 'main_designs/icons/story.png' %}" alt="Floors icon" height="20" width="20"> <strong>{{ plan.floors }}</strong> story</td>
-                <td class="py-2"><img src="{% static 'main_designs/icons/size.png' %}" alt="Heated sq. feet icon" height="20" width="20"> <strong>{{ plan.formatted_heated_sq_feet }}</strong> sq. feet</td>
-                </tr>
-            </tbody>
-            </table>
         </div>
+        <div class="carousel-item">
+            <div class="row">
+        {% endif %}
+        {% if forloop.last %}
+            </div>
         </div>
-    </a>
+        {% endif %}
+        {% empty %}
+        <p>No plans found.</p>
+        {% endfor %}
     </div>
-{% empty %}
-    <div class="col-md-12">
-    <p>No plans found.</p>
+    <a class="carousel-control-prev" href="#under-2000-carousel" role="button" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#under-2000-carousel" role="button" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </a>
+      <div class="row">
+        <div class="col-md-12">
+          <a href="{% url 'plan_list' %}?min_bedrooms=&max_bedrooms=&min_bathrooms=&max_bathrooms=&floors=&min_sq_feet=&max_sq_feet=2000&name=" class="btn btn-primary">View More Plans</a>
+        </div>
     </div>
-{% endfor %}
 </div>

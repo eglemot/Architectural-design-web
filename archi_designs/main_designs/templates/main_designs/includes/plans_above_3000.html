@@ -7,7 +7,7 @@
     </div>
 </div>
 
-<div id="above-3000-carousel" class="carousel slide" data-bs-ride="carousel">
+<div id="above-3000-carousel" class="carousel slide">
     <div class="carousel-inner">
         {% for plan in above_3000 %}
         {% if forloop.first %}
@@ -58,7 +58,7 @@
             </div>
         </div>
         <div class="carousel-item">
-            <div class="row justify-content-between">
+            <div class="row">
         {% endif %}
         {% if forloop.last %}
             </div>
@@ -76,5 +76,10 @@
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Next</span>
     </a>
+    <div class="row">
+        <div class="col-md-12">
+          <a href="{% url 'plan_list' %}?min_bedrooms=&max_bedrooms=&min_bathrooms=&max_bathrooms=&floors=&min_sq_feet=3000&max_sq_feet=&name=" class="btn btn-primary">View More Plans</a>
+        </div>
+      </div>
 </div>
 
