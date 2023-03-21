@@ -3,14 +3,28 @@ from django.db.models import Q
 from django.shortcuts import render, get_object_or_404
 from .models import Plan, FloorPicture, PlanPicture
 from django.core.paginator import Paginator
+from django.views.generic import ListView
 
 
+class HomePageView(ListView):
+    queryset = Plan.objects.all()
+    template_name = 'main_designs/home.html'
 
-def home(request):
-    plan_count = Plan.objects.count()
-    return render(request, 'main_designs/home.html', {
-        'plan_count': plan_count,
-    })
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['top_plans'] = Plan.objects.filter(id__in=[1, 2, 3, 4])
+
+        under_2000 = Plan.objects.filter(heated_sq_feet__lt=2000)
+        between_2000_3000 = Plan.objects.filter(heated_sq_feet__gte=2000, heated_sq_feet__lte=3000)
+        above_3000 = Plan.objects.filter(heated_sq_feet__gt=3000)
+
+        context['under_2000'] = under_2000
+        context['between_2000_3000'] = between_2000_3000
+        context['above_3000'] = above_3000
+
+        context['plan_count'] = self.queryset.count()
+
+        return context
 
 def plan_list(request):
     min_bedrooms = request.GET.get('min_bedrooms')
