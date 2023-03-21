@@ -4,106 +4,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.11.0/baguetteBox.min.css" crossorigin="anonymous" />
 {% endblock %}
 {% block content %}
-<div class="plan-details-name">
-<h1>{{ plan.name }}</h1>
-</div>
-<div class="row mt-3">
-    <div class="col-md-8">
-        <!-- Carousel -->
-        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-interval="5000">
-            <ol class="carousel-indicators">
-                {% for picture in plan.plan_pictures.all %}
-                    <li data-target="#carouselExampleIndicators" data-slide-to="{{ forloop.counter0 }}" {% if forloop.first %}class="active"{% endif %}></li>
-                {% endfor %}
-            </ol>
-            <div class="carousel-inner">
-                {% for picture in plan.plan_pictures.all %}
-                    <div class="carousel-item {% if forloop.first %}active{% endif %}">
-                        <img src="{{ picture.image.url }}" class="d-block w-100" alt="{{ plan.name }}" style="max-height: 550px;">
-                    </div>
-                {% endfor %}
-            </div>
-            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
-        </div>
-    </div>
-    <div class="col-md-4">
-<!-- Main details -->
-<div class="row mt-3">
-    <div class="col-md-10">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">Main Details</h5>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item" style="display: inline-block;">
-              <img src="{% static 'main_designs/icons/bed.png' %}" alt="Bedrooms icon" width="24" height="24">
-              {% if plan.min_bedrooms == plan.max_bedrooms %}
-              <strong>Bedrooms: </strong>{{ plan.min_bedrooms }}
-            {% else %}
-              <strong>Bedrooms: </strong>{{ plan.min_bedrooms }}-{{ plan.max_bedrooms }}
-            {% endif %}
-            </li>
-            <li class="list-group-item" style="display: inline-block;">
-              <img src="{% static 'main_designs/icons/bath.png' %}" alt="Bathrooms icon" width="24" height="24">
-              {% if plan.min_bathrooms == plan.max_bathrooms %}
-              <strong> Bathrooms: </strong>{{ plan.min_bathrooms }}
-            {% else %}
-              <strong>Bathrooms: </strong>{{ plan.min_bathrooms }}-{{ plan.max_bathrooms }}
-            {% endif %}
-            </li>
-            <li class="list-group-item" style="display: inline-block;">
-              <img src="{% static 'main_designs/icons/story.png' %}" alt="Floors icon" width="24" height="24">
-              <strong>Floors:</strong> {{ plan.floors }}
-            </li>
-            <li class="list-group-item" style="display: inline-block;">
-              <img src="{% static 'main_designs/icons/size.png' %}" alt="Heated sq. feet icon" width="24" height="24">
-              <strong>Heated sq. feet:</strong> {{ plan.formatted_heated_sq_feet }}
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- Other parameters -->
-<div class="col-md-6">
-  <ul class="list-inline">
-    {% if plan.walk_in_pantry %}
-      <li class="list-inline-item"><i class="bi bi-check"></i> Walk-in pantry</li>
-    {% endif %}
-    {% if plan.home_office %}
-      <li class="list-inline-item"><i class="bi bi-check"></i> Home office</li>
-    {% endif %}
-    {% if plan.mudroom %}
-      <li class="list-inline-item"><i class="bi bi-check"></i> Mudroom</li>
-    {% endif %}
-    {% if plan.bonus_room %}
-      <li class="list-inline-item"><i class="bi bi-check"></i> Bonus room</li>
-    {% endif %}
-    {% if plan.wrap_around_porch %}
-      <li class="list-inline-item"><i class="bi bi-check"></i> Wrap-around porch</li>
-    {% endif %}
-  </ul>
-</div>
-<!-- Order now button with affiliate link -->
-          <div class="row mt-3">
-            <div class="col-md-6">
-                <a href="{{ plan.affiliate_link }}" class="btn btn-primary btn-lg order-now-btn">ORDER NOW</a>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- CUSTOMIZE button with affiliate link -->
-<div class="row mt-4">
-  <div class="col-md-8">
-      <a href="{{ plan.affiliate_link }}" class="btn btn-primary btn-lg customize-plan-btn">CUSTOMIZE THIS PLAN</a>
-  </div>
-</div>
+{% include 'main_designs/includes/plan_details_main.html'%}
 <!-- Floor pictures -->
 <div class="col-md-10">
   <div class="floor-plan-h mt-5">
@@ -136,72 +37,7 @@
     });
   </script>
 </div>
-<!-- Gallery -->
-<div class="col-md-12">
-  <h1>Gallery</h1>
-  <div class="gallery">
-      {% for plan_picture in plan_pictures|slice:":6" %}
-      <div class="gallery-item">
-          <a href="{{ plan_picture.image.url }}" data-caption="{{ plan_picture.plan.name }} - Finished Design">
-              <img src="{{ plan_picture.image.url }}" alt="{{ plan_picture.plan.name }} - Finished Design">
-          </a>
-      </div>
-      {% endfor %}
-  </div>
-  <button id="view-more">Load More</button>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.11.0/baguetteBox.min.js" crossorigin="anonymous"></script>
-  <script>
-      var images = [
-          {% for floor_picture in floor_pictures %}
-          {
-              url: '{{ floor_picture.image.url }}',
-              caption: '{{ floor_picture.plan.name }} floor {{ floor_picture.floor_number }}'
-          },
-          {% endfor %}
-          {% for plan_picture in plan_pictures %}
-          {
-              url: '{{ plan_picture.image.url }}',
-              caption: '{{ plan_picture.plan.name }} - Finished Design'
-          },
-          {% endfor %}
-      ];
-      var startIndex = 3; // Start with the fourth image (index 3)
-      var pageSize = 3; // Load 3 images at a time
-      var viewMoreBtn = document.getElementById('view-more');
-      var gallery = document.querySelector('.gallery');
-      
-      viewMoreBtn.addEventListener('click', function() {
-          for (var i = startIndex; i < Math.min(startIndex + pageSize, images.length); i++) {
-              var img = document.createElement('img');
-              img.src = images[i].url;
-              img.alt = images[i].caption;
-              var a = document.createElement('a');
-              a.href = images[i].url;
-              a.dataset.caption = images[i].caption;
-              a.appendChild(img);
-              var div = document.createElement('div');
-              div.className = 'gallery-item';
-              div.appendChild(a);
-              gallery.appendChild(div);
-          }
-          startIndex += pageSize;
-          if (startIndex >= images.length) {
-              viewMoreBtn.style.display = 'none';
-          }
-          baguetteBox.run('.gallery', {
-              buttons: true // Enable navigation buttons
-          });
-      });
-      
-      if (startIndex >= images.length) {
-          viewMoreBtn.style.display = 'none';
-      }
-      
-      baguetteBox.run('.gallery', {
-          buttons: true // Enable navigation buttons
-      });
-  </script>
-</div>
+{% include 'main_designs/includes/plan_gallery.html'%}
 <!-- Related plans -->
 <div class="related-plans">
   <h3>YOU MAY ALSO LIKE:</h3>
@@ -254,14 +90,16 @@
     {% endfor %}
   </div>
 </div>
-
-</div>
 {% endblock content %}
 {% block style%}
 /* Style for the carousel */
+#carouselExampleIndicators .carousel-item img {
+    max-height: 550px;
+  }
+
 @media screen and (max-width: 767px) {
   #carouselExampleIndicators .carousel-item img {
-    max-height: 300px;
+    max-height: 290px;
   }
 }
 
@@ -278,7 +116,24 @@
 .carousel-control-prev,
 .carousel-control-next {
   width: 7%;
+  opacity: 0.5;
 }
+
+.carousel-control-prev:hover,
+.carousel-control-next:hover {
+  opacity: 1;
+}
+
+.carousel-indicators li {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+}
+
+.carousel-indicators .active {
+  background-color: #007bff;
+}
+
 
 /* Style for the main details card */
 
@@ -288,7 +143,7 @@
 }
 
 .list-group-item {
-  display: flex;
+  displaystyle="display: inline-block;;
   align-items: center;
   padding: 0.75rem 1.25rem;
   border-top: none;
@@ -310,14 +165,14 @@
   margin-right: 0.5rem;
 }
 ul.list-inline {
-    display: flex;
-    flex-wrap: wrap;
+    displaystyle="display: inline-block;;
+style="display: inline-block;-wrap: wrap;
     justify-content: space-between;
     align-items: center;
   }
   
   ul.list-inline li {
-    display: flex;
+    displaystyle="display: inline-block;;
     align-items: center;
     font-size: 18px;
     color: #4a4a4a;
@@ -375,7 +230,7 @@ ul.list-inline {
     background-color: rgba(0,0,0,0.5);
     opacity: 0;
     transition: opacity 0.3s ease;
-    display: flex;
+    displaystyle="display: inline-block;;
     align-items: center;
     justify-content: center;
 }

@@ -1,0 +1,65 @@
+<div class="col-md-12">
+    <h1>Gallery</h1>
+    <div class="gallery">
+        {% for plan_picture in plan_pictures|slice:":6" %}
+        <div class="gallery-item">
+            <a href="{{ plan_picture.image.url }}" data-caption="{{ plan_picture.plan.name }} - Finished Design">
+                <img src="{{ plan_picture.image.url }}" alt="{{ plan_picture.plan.name }} - Finished Design">
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+    <button id="view-more">Load More</button>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.11.0/baguetteBox.min.js" crossorigin="anonymous"></script>
+    <script>
+        var images = [
+            {% for floor_picture in floor_pictures %}
+            {
+                url: '{{ floor_picture.image.url }}',
+                caption: '{{ floor_picture.plan.name }} floor {{ floor_picture.floor_number }}'
+            },
+            {% endfor %}
+            {% for plan_picture in plan_pictures %}
+            {
+                url: '{{ plan_picture.image.url }}',
+                caption: '{{ plan_picture.plan.name }} - Finished Design'
+            },
+            {% endfor %}
+        ];
+        var startIndex = 3; // Start with the fourth image (index 3)
+        var pageSize = 3; // Load 3 images at a time
+        var viewMoreBtn = document.getElementById('view-more');
+        var gallery = document.querySelector('.gallery');
+        
+        viewMoreBtn.addEventListener('click', function() {
+            for (var i = startIndex; i < Math.min(startIndex + pageSize, images.length); i++) {
+                var img = document.createElement('img');
+                img.src = images[i].url;
+                img.alt = images[i].caption;
+                var a = document.createElement('a');
+                a.href = images[i].url;
+                a.dataset.caption = images[i].caption;
+                a.appendChild(img);
+                var div = document.createElement('div');
+                div.className = 'gallery-item';
+                div.appendChild(a);
+                gallery.appendChild(div);
+            }
+            startIndex += pageSize;
+            if (startIndex >= images.length) {
+                viewMoreBtn.style.display = 'none';
+            }
+            baguetteBox.run('.gallery', {
+                buttons: true // Enable navigation buttons
+            });
+        });
+        
+        if (startIndex >= images.length) {
+            viewMoreBtn.style.display = 'none';
+        }
+        
+        baguetteBox.run('.gallery', {
+            buttons: true // Enable navigation buttons
+        });
+    </script>
+  </div>

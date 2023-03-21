@@ -1,0 +1,99 @@
+{% load static i18n %}
+<div class="row mt-3">
+    <div class="col-md-8">
+        <!-- Carousel -->
+        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
+            <ol class="carousel-indicators">
+                {% for picture in plan.plan_pictures.all %}
+                <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ forloop.counter0 }}" {% if forloop.first %}class="active"{% endif %}></li>
+                {% endfor %}
+            </ol>
+            <div class="carousel-inner">
+                {% for picture in plan.plan_pictures.all %}
+                <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                    <img src="{{ picture.image.url }}" class="d-block w-100" alt="{{ plan.name }}">
+                </div>
+                {% endfor %}
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>
+    <div class="col-md-4">
+              <!-- Main details, Other parameters and Order Now button -->
+  <div class="row mt-3">
+    <div class="col-md-10">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Main Details</h5>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item style="display: inline-block;">
+                  <img src="{% static 'main_designs/icons/bed.png' %}" alt="Bedrooms icon" width="24" height="24">
+                  {% if plan.min_bedrooms == plan.max_bedrooms %}
+                  <strong>Bedrooms: </strong>{{ plan.min_bedrooms }}
+                  {% else %}
+                  <strong>Bedrooms: </strong>{{ plan.min_bedrooms }}-{{ plan.max_bedrooms }}
+                  {% endif %}
+                </li>
+                <li class="list-group-item style="display: inline-block;">
+                  <img src="{% static 'main_designs/icons/bath.png' %}" alt="Bathrooms icon" width="24" height="24">
+                  {% if plan.min_bathrooms == plan.max_bathrooms %}
+                  <strong> Bathrooms: </strong>{{ plan.min_bathrooms }}
+                  {% else %}
+                  <strong>Bathrooms: </strong>{{ plan.min_bathrooms }}-{{ plan.max_bathrooms }}
+                  {% endif %}
+                </li>
+                <li class="list-group-item style="display: inline-block;">
+                  <img src="{% static 'main_designs/icons/story.png' %}" alt="Floors icon" width="24" height="24">
+                  <strong>Floors:</strong> {{ plan.floors }}
+                </li>
+                <li class="list-group-item style="display: inline-block;">
+                  <img src="{% static 'main_designs/icons/size.png' %}" alt="Heated sq. feet icon" width="24" height="24">
+                  <strong>Heated sq. feet:</strong> {{ plan.formatted_heated_sq_feet }}
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Other parameters -->
+        <div class="col-md-6">
+          <ul class="list-inline">
+            {% if plan.walk_in_pantry %}
+            <li class="list-inline-item"><i class="bi bi-check"></i> Walk-in pantry</li>
+            {% endif %}
+            {% if plan.home_office %}
+            <li class="list-inline-item"><i class="bi bi-check"></i> Home office</li>
+            {% endif %}
+            {% if plan.mudroom %}
+            <li class="list-inline-item"><i class="bi bi-check"></i> Mudroom</li>
+            {% endif %}
+            {% if plan.bonus_room %}
+            <li class="list-inline-item"><i class="bi bi-check"></i> Bonus room</li>
+            {% endif %}
+            {% if plan.wrap_around_porch %}
+            <li class="list-inline-item"><i class="bi bi-check"></i> Wrap-around porch</li>
+            {% endif %}
+          </ul>
+        </div>
+  <!-- Order now button with affiliate link -->
+  <div class="row mt-3">
+    <div class="col-md-6">
+        <a href="{{ plan.affiliate_link }}" class="btn btn-primary btn-lg order-now-btn">ORDER NOW</a>
+    </div>
+  </div>
+  </div>
+  </div>       
+  
+  <!-- CUSTOMIZE button with affiliate link -->
+  <div class="row mt-4">
+    <div class="col-md-8">
+        <a href="{{ plan.affiliate_link }}" class="btn btn-primary btn-lg customize-plan-btn">CUSTOMIZE THIS PLAN</a>
+    </div>
+  </div>
