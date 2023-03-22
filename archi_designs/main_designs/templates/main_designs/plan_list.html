@@ -4,6 +4,13 @@
 
 <div class="container-fluid">
   <h2 class="my-4">Find Your Dream Home</h2>
+<div class="col-md-12 col-sm-12 mb-3">
+    <button class="btn btn-primary use-filter-btn mb-3" type="button" data-bs-toggle="collapse" data-bs-target="#filter-section" aria-expanded="false" aria-controls="filter-section">
+      USE FILTER
+    </button>
+  </div>
+  
+  <div class="collapse border bg-light py-3" id="filter-section">
   <form method="get">
     <div class="row">
       <div class="col-md-3 mb-3">
@@ -87,50 +94,50 @@
   <div class="form-group col-md-12">
     <label class="form-label">Features:</label>
     <div class="row">
-      <div class="col-md-4 col-sm-6 mb-3">
+      <div class="col-md-2 col-sm-6 mb-3">
         <div class="form-check">
           <input class="form-check-input" type="checkbox" name="basement" {% if basement %}checked{% endif %} id="basement">
           <label class="form-check-label" for="basement">Basement</label>
         </div>
       </div>
-      <div class="col-md-4 col-sm-6 mb-3">
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" name="loft" {% if loft %}checked{% endif %} id="loft">
-          <label class="form-check-label" for="loft">Loft</label>
-        </div>
-      </div>
-      <div class="col-md-4 col-sm-12 mb-3">
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" name="walk_in_pantry" {% if walk_in_pantry %}checked{% endif %} id="walk_in_pantry">
-          <label class="form-check-label" for="walk_in_pantry">Walk-in pantry</label>
-        </div>
-      </div>
-      <div class="col-md-4 col-sm-6 mb-3">
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" name="home_office" {% if home_office %}checked{% endif %} id="home_office">
-          <label class="form-check-label" for="home_office">Home office</label>
-        </div>
-      </div>
-      <div class="col-md-4 col-sm-6 mb-3">
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" name="mudroom" {% if mudroom %}checked{% endif %} id="mudroom">
-          <label class="form-check-label" for="mudroom">Mudroom</label>
-        </div>
-      </div>
-      <div class="col-md-4 col-sm-6 mb-3">
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" name="bonus_room" {% if bonus_room %}checked{% endif %} id="bonus_room">
-          <label class="form-check-label" for="bonus_room">Bonus Room</label>
-        </div>
-      </div>
-      <div class="col-md-4 col-sm-12 mb-3">
+      <div class="col-md-2 col-sm-6 mb-3">
         <div class="form-check">
           <input class="form-check-input" type="checkbox" name="wrap_around_porch" {% if wrap_around_porch %}checked{% endif %} id="wrap_around_porch">
           <label class="form-check-label" for="wrap_around_porch">Wrap around porch</label>
         </div>
       </div>
+      <div class="col-md-2 col-sm-12 mb-3">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" name="walk_in_pantry" {% if walk_in_pantry %}checked{% endif %} id="walk_in_pantry">
+          <label class="form-check-label" for="walk_in_pantry">Walk-in pantry</label>
+        </div>
+      </div>
+      <div class="col-md-2 col-sm-6 mb-3">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" name="home_office" {% if home_office %}checked{% endif %} id="home_office">
+          <label class="form-check-label" for="home_office">Home office</label>
+        </div>
+      </div>
+      <div class="col-md-2 col-sm-6 mb-3">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" name="mudroom" {% if mudroom %}checked{% endif %} id="mudroom">
+          <label class="form-check-label" for="mudroom">Mudroom</label>
+        </div>
+      </div>
+      <div class="col-md-2 col-sm-6 mb-3">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" name="bonus_room" {% if bonus_room %}checked{% endif %} id="bonus_room">
+          <label class="form-check-label" for="bonus_room">Bonus Room</label>
+        </div>
+      </div>
+      <div class="col-md-2 col-sm-12 mb-3">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" name="loft" {% if loft %}checked{% endif %} id="loft">
+          <label class="form-check-label" for="loft">Loft</label>
+        </div>
+      </div>
         <!-- Filter form for buttons-->
-        <div class="form-group col-md-3 filter-reset-buttons">
+        <div class="form-group col-md-12 filter-reset-buttons">
           <div class="form-group d-flex align-items-end">
             <form method="get" class="form-inline mb-3">
               <div class="form-group mr-2">
@@ -142,6 +149,10 @@
             </div>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+</div>
         {% include 'main_designs/includes/paginator_fp.html' %}
 <!-- Plan list -->
 <div class="row">
@@ -196,13 +207,9 @@
 </form>
 {% endblock %}
 {% block style%}
-.row {
-  padding-bottom:50px;
-}
 .filter-reset-buttons {
     display: flex;
-    align-items: flex-end;
-    margin-top:2rem;
+    align-items: flex-start;
 }
 .btn-primary{
   padding-right:5rem;
@@ -273,6 +280,14 @@
   .filter-container.show {
     display: block;
   }
+}
+.py-3 {
+  padding-right: 1rem!important;
+  padding-left: 1rem!important;
+}
+
+#filter-section {
+  margin-bottom:2rem;
 }
 {% endblock style%}
 
