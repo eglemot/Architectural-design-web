@@ -8,9 +8,8 @@
     <button class="btn btn-primary use-filter-btn mb-3" type="button" data-bs-toggle="collapse" data-bs-target="#filter-section" aria-expanded="false" aria-controls="filter-section">
       USE FILTER
     </button>
-  </div>
-  
-  <div class="collapse border bg-light py-3" id="filter-section">
+</div>
+<div class="collapse border bg-light py-3" id="filter-section">
   <form method="get">
     <div class="row">
       <div class="col-md-3 mb-3">
@@ -153,7 +152,11 @@
     </div>
   </div>
 </div>
-        {% include 'main_designs/includes/paginator_fp.html' %}
+<div class="row-fp">
+  <div class="col-md-12">
+    {% include 'main_designs/includes/paginator_fp.html' %}
+  </div>
+</div>
 <!-- Plan list -->
 <div class="row">
   {% for plan in plans %}
@@ -199,12 +202,15 @@
       </div>
     </div>
   </a>
-  </div>
+</div>
   {% empty %}
   <p>No plans found</p>
   {% endfor %}
+<div class="row-fp text-center">
   {% include 'main_designs/includes/paginator_pages.html' %}
+</div>
 </form>
+</div>
 {% endblock %}
 {% block style%}
 .filter-reset-buttons {
@@ -288,6 +294,9 @@
 
 #filter-section {
   margin-bottom:2rem;
+}
+.row-fp {
+  padding-bottom:60px;
 }
 {% endblock style%}
 
