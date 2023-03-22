@@ -20,12 +20,13 @@ body {
 }
 
 header {
-    background-color: var(--primary-color);
+    background-color:#2C3639;
     color: var(--fourth-color);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem;
+    padding:2rem;
+
 }
 
 nav ul {
@@ -37,6 +38,7 @@ nav ul {
 
 nav ul li {
     margin-right: 1rem;
+    font-size:18px;
 }
 
 nav ul li:last-child {
@@ -54,13 +56,21 @@ nav ul li a:hover {
 }
 
 main {
-    background-color:var(--secondary-color);
+    background-color:#DCD7C9;
     padding:20px;
 }
 
 footer {
-    background-color: #333;
+    background-color: #323d3e;
     color: white;
     text-align: center;
     padding: 1rem;
 }
+@media (max-width: 767px) {
+    .logo {
+      width: 160px;
+      height: 40px;
+    }
+  }
+
+  

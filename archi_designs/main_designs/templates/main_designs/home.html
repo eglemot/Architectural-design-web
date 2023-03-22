@@ -2,13 +2,13 @@
 {% load static i18n %}
 {% block content %}
 {% include 'main_designs/includes/top_plans.html'%}
-  <hr>
+
 {% include 'main_designs/includes/plans_under_2000.html'%}
-  <hr>
+  
 {% include 'main_designs/includes/plans_betw_2000_3000.html'%}
-  <hr>
+ 
 {% include 'main_designs/includes/plans_above_3000.html'%}
-  <hr>
+
 {% include 'main_designs/includes/inc_plan_list.html'%}
 {% endblock %}
 
@@ -24,15 +24,21 @@
 }
 
 .table td:first-child {
-  border-right: 1px solid #dee2e6;
+  border-right: 1px solid #3F4E4F;
 }
 
 .table tr:last-child td {
   border-bottom: none;
 }
+.table tr:first-child td {
+  border-bottom: 1px solid #3F4E4F;
+}
+.table tr:first-child td {
+  border-top: 1px solid #3F4E4F;
+}
 
 .table tr td:not(:last-child) {
-  border-right: 1px solid #dee2e6;
+  border-right: 1px solid #3F4E4F;
 }
 .highlighted {
   background-color: #ffffcc;
@@ -48,15 +54,17 @@
   overflow: hidden;
   text-overflow: ellipsis;
   margin: 5px;
-  border-bottom:1px solid;
+
 }
 
 .plan-card img {
-  border-top-left-radius: calc(0.25rem - 1px);
-  border-top-right-radius: calc(0.25rem - 1px);
+  border-top-left-radius: calc(0.50rem - 1px);
+  border-top-right-radius: calc(0.50rem - 1px);
 }
 .plan-card {
   transition: transform 0.3s;
+  background-color:#DCD7C9;
+  border-color:#3F4E4F;
 }
 
 .plan-card:hover {
@@ -109,7 +117,7 @@
 
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
-  display: inline-block; 
+  {% comment %} display: inline-block;  {% endcomment %}
   width: 2rem;
   height: 2rem;
   background-repeat: no-repeat;
@@ -119,26 +127,42 @@
 }
 
 .carousel-control-prev {
-  left: 1rem;
+  background-color:#A27B5C;
 }
 
-.carousel-control-prev:hover {
-  left: 0.5rem;
-}
+
 
 .carousel-control-next {
-  right: 1rem;
+  background-color:#A27B5C;
 }
 
-.carousel-control-next:hover {
-  right: 0.5rem;
-}
+
 @media only screen and (max-width: 768px) {
   /* hide carousel controls on phones */
   .carousel-control-prev,
   .carousel-control-next {
     display: none;
   }
+}
+h2 {
+  background-color:#A27B5C;
+  padding:20px;
+  text-align:center;
+  margin-bottom:50px;
+  margin-top:30px;
+  margin-left:-20px;
+  margin-right:-20px;
+  color: #FEFCF3;
+}
+.home-btn-more {
+  margin-bottom:1rem;
+  margin-top:2rem;
+  background-color:#3F4E4F;
+  border-color:#3F4E4F;
+}
+.home-btn-more:hover {
+  background-color:#323d3e;
+  border-color:#323d3e;
 }
 
 {% endblock style%}
