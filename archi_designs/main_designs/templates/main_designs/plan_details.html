@@ -6,18 +6,22 @@
 {% block content %}
 {% include 'main_designs/includes/plan_details_main.html'%}
 <!-- Floor pictures -->
-<div class="col-md-10">
-  <div class="floor-plan-h mt-5">
+<div class="col-md-12">
+  <div class="floor-plan-h mt-5 text-center">
     <h2>Floor Plan</h2>
+    <hr></hr>
   </div>
-  <div class="floor-pictures-list">
+  <div class="floor-pictures-list col-md-12">
     {% for floor_picture in floor_pictures %}
-      <div class="floor-picture">
+      <div class="floor-picture text-center">
         <h3>{% if floor_picture.floor_number == 1 %}Main Floor{% elif floor_picture.floor_number == 2 %}Upper Floor{% elif floor_picture.floor_number == 3 %}Top Floor{% endif %}</h3>
+      </div>
+      <div class="col-md-12 text-center pb-4">
         <a href="{{ floor_picture.image.url }}" data-fancybox="{{ floor_picture.plan.name }} - {% if floor_picture.floor_number == 1 %}Main Floor{% elif floor_picture.floor_number == 2 %}Upper Floor{% elif floor_picture.floor_number == 3 %}Top Floor{% endif %}" data-caption="{{ floor_picture.plan.name }} - {% if floor_picture.floor_number == 1 %}Main Floor{% elif floor_picture.floor_number == 2 %}Upper Floor{% elif floor_picture.floor_number == 3 %}Top Floor{% endif %}">
           <img src="{{ floor_picture.image.url }}" alt="{{ floor_picture.plan.name }} - {% if floor_picture.floor_number == 1 %}Main Floor{% elif floor_picture.floor_number == 2 %}Upper Floor{% elif floor_picture.floor_number == 3 %}Top Floor{% endif %}}" class="img-fluid">
         </a>
       </div>
+      
     {% endfor %}
   </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
