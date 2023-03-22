@@ -1,9 +1,15 @@
-from django.shortcuts import render
-from django.db.models import Q
 from django.shortcuts import render, get_object_or_404
+from django.db.models import Q
 from .models import Plan, FloorPicture, PlanPicture
 from django.core.paginator import Paginator
 from django.views.generic import ListView
+from django.core.mail import EmailMessage
+from django.template.loader import render_to_string
+from django.conf import settings
+from .forms import ContactForm
+from django.contrib import messages
+from django.views.generic.edit import FormView
+from django.urls import reverse_lazy
 
 
 class HomePageView(ListView):
@@ -101,6 +107,26 @@ def plan_detail(request, plan_id):
         'plan_pictures': plan_pictures,
         'related_plans': related_plans,
     })
+
+class ContactView(FormView):
+    form_class = ContactForm
+    template_name = 'main_designs/contact.html'
+    success_url = reverse_lazy('contact')
+
+    def form_valid(self, form):
+        name = form.cleaned_data['name']
+        email = form.cleaned_data['email']
+        title = form.cleaned_data['title']
+        message = form.cleaned_data['message']
+
+        subject = f'New contact form submission: {title}'
+        body = render_to_string('main_designs/email_body.txt', {'name': name, 'email': email, 'message': message})
+        email = EmailMessage(subject, body, email, [settings.DEFAULT_FROM_EMAIL])
+        email.send()
+
+        messages.success(self.request, 'Thank you for your message!')
+        return super().form_valid(form)
+
 
 
 

@@ -1,0 +1,7 @@
+You've got a new message from Architectural Design Web:
+
+Name: {{ name }}
+
+Email: {{ email }}
+
+Message: {{ message }}
