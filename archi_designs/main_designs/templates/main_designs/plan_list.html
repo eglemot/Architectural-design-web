@@ -2,13 +2,13 @@
 {% load static i18n %}
 {% block content %}
 
-<div class="container-fluid">
-  <h2 class="my-4">Find Your Dream Home</h2>
-<div class="col-md-12 col-sm-12 mb-3">
-    <button class="btn btn-primary use-filter-btn mb-3" type="button" data-bs-toggle="collapse" data-bs-target="#filter-section" aria-expanded="false" aria-controls="filter-section">
-      USE FILTER
-    </button>
+<h2>Find Your Dream Home</h2>
+<div class="col-md-12 col-sm-12 mb-3 text-center">
+  <button class="btn btn-primary use-filter-btn mb-3" type="button" data-bs-toggle="collapse" data-bs-target="#filter-section" aria-expanded="false" aria-controls="filter-section">
+    USE FILTER
+  </button>
 </div>
+<div class="container-fluid">
 <div class="collapse border bg-light py-3" id="filter-section">
   <form method="get">
     <div class="row">
@@ -298,6 +298,22 @@
 .row-fp {
   padding-bottom:60px;
 }
+h2 {
+  background-color:#A27B5C;
+  padding:20px;
+  text-align:center;
+  margin-bottom:50px;
+  margin-top:30px;
+  margin-left:-20px;
+  margin-right:-20px;
+  color: #FEFCF3;
+}
+.use-filter-btn{
+width:100%;
+margin-right:-20px;
+margin-left:-20px;
+}
+
 {% endblock style%}
 
 

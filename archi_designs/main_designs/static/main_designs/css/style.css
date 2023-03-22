@@ -20,7 +20,7 @@ body {
 }
 
 header {
-    background-color:#2C3639;
+    background-color:#2c3639;
     color: var(--fourth-color);
     display: flex;
     justify-content: space-between;
@@ -56,20 +56,18 @@ nav ul li a:hover {
 }
 
 main {
-    background-color:#DCD7C9;
-    padding:20px;
+    background-color:#dcd7c938;
 }
 
 footer {
-    background-color: #323d3e;
+    background-color: #08050197;
     color: white;
     text-align: center;
     padding: 1rem;
 }
 @media (max-width: 767px) {
     .logo {
-      width: 160px;
-      height: 40px;
+     display: none;
     }
   }
 
