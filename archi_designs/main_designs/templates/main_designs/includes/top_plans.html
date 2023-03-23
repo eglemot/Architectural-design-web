@@ -1,17 +1,17 @@
 {% load static i18n %}
 <div class="row">
     <div class="col-md-12 h2-first">
-      <h2>TOP PLANS</h2>
+      <h2 style="margin-top: 0px;">TOP PLANS</h2>
     </div>
   </div>
   
-<div class="row justify-content-between">
+<div class="row justify-content-between top-plans">
 {% for plan in top_plans %}
 <div class="col-md-3 mb-4">
     <a href="{{ plan.affiliate_link }}" class="no-underline">
     <div class="card plan-card">
     <img src="{{ plan.plan_pictures.first.image.url }}" alt="{{ plan.name }}">
-    <div class="card-body p-0 m-0">
+    <div class="card-body p-0 m-0 top-plans">
         <div class="card-title">
             <span>{{ plan.name }}</span>
             </div>
