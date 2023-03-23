@@ -138,3 +138,9 @@ EMAIL_HOST_USER = local_settings.EMAIL_HOST_USER
 EMAIL_HOST_PASSWORD = local_settings.EMAIL_HOST_PASSWORD
 DEFAULT_FROM_EMAIL = local_settings.DEFAULT_FROM_EMAIL
 
+# Cookies
+SESSION_ENGINE = 'django.contrib.sessions.backends.signed_cookies'
+SESSION_COOKIE_HTTPONLY = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+

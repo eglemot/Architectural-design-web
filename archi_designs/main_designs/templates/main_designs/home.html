@@ -4,7 +4,7 @@
 <div class="image-container">
   <img src="{% static 'main_designs/images/welcome.jpeg' %}" alt="Welcome">
   <div class="color-overlay"></div>
-  <div class="overlay-text">FIND YOUR FUTURE HOUSE</div>
+  <div class="overlay-text">DISCOVER YOUR DREAM HOUSE</div>
 </div>
 
 {% include 'main_designs/includes/top_plans.html'%}
@@ -47,7 +47,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 3rem;
+  font-size: 5em;
   color: #fff;
   text-align: center;
   z-index: 1;
@@ -103,7 +103,7 @@
 }
 .plan-card {
   transition: transform 0.3s;
-  background-color:#dcd7c954;
+  background-color: #fff;
   border: none;
   box-shadow: 3px 3px 8px 2px rgb(0 0 0 / 15%);
 }
@@ -182,7 +182,8 @@
   }
 }
 h2 {
-  background-color:#dd7827;
+  background-color:#323d3e;
+  color:#FEFBF3;
   padding:20px;
   text-align:center;
   margin-bottom:0;
@@ -207,30 +208,29 @@ margin-left:20px;
 margin-right:20px;
 }
 #under-2000-carousel.carousel.slide{
-  background-color: #F9F5EB;
   padding-top:3rem;
   padding-bottom:2rem;
 }
 .row.justify-content-between.top-plans{
   padding-top:3rem;
   padding-bottom:2rem;
-  background-color: #FBF8F1;
 }
 #between-2000-3000-carousel.carousel.slide{
   padding-top:3rem;
   padding-bottom:2rem;
-  background-color: #F9F5EB;
 }
 #above-3000-carousel.carousel.slide{
     padding-top:3rem;
     padding-bottom:2rem;
-    background-color: #F9F5EB;
 }
 #plan-list-carousel{
   padding-top:3rem;
   padding-bottom:2rem;
 }
-
+.h2-top{
+  background-color:#DD7827;
+  border-color:#DD7827;
+}
 {% endblock style%}
 
 

@@ -1,0 +1,129 @@
+<div id="cookies-popup" class="cookies-popup">
+    <div class="cookies-popup-content">
+      <div class="cookies-popup-message">
+        <p>We use cookies to improve your browsing experience. By continuing to use this website, you consent to the use of cookies. You can learn more about our cookies policy in our <a href="#">privacy policy</a>.</p>
+      </div>
+      <div class="cookies-popup-buttons">
+        <button class="cookies-popup-accept" id="accept-cookies">Accept</button>
+        <button class="cookies-popup-decline" id="decline-cookies">Decline</button>
+      </div>
+    </div>
+  </div>  
+<style>
+    .cookies-popup {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: #F0EBE3;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        z-index: 9999;
+      }
+      
+      .cookies-popup-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 20px;
+      }
+      
+      .cookies-popup-message {
+        flex: 1;
+        margin-right: 20px;
+      }
+      
+      .cookies-popup-message p {
+        margin: 0;
+      }
+      
+      .cookies-popup-buttons {
+        display: flex;
+      }
+      
+      .cookies-popup-accept {
+        background-color:#DD7827;
+        border: 1px solid #333;
+        color:#ffff;
+        border: none;
+        padding: 10px 80px;
+        margin-right: 10px;
+        cursor: pointer;
+        transition: background-color 0.2s;
+      }
+      
+      .cookies-popup-accept:hover {
+        background-color: #0062cc;
+        background-color: #fff;
+        color: #333;
+        border: 1px solid #333;
+      }
+      
+      .cookies-popup-decline {
+        background-color: #333;
+        color: #fff;
+        border: 1px solid #333;
+        padding: 10px 20px;
+        cursor: pointer;
+        transition: background-color 0.2s, color 0.2s;
+      }
+      
+      .cookies-popup-decline:hover {
+        background-color: #fff;
+        color: #333;
+      }
+      
+      /* Mobile styles */
+      @media only screen and (max-width: 600px) {
+        .cookies-popup-content {
+          flex-direction: column;
+        }
+      
+        .cookies-popup-message {
+          margin-bottom: 10px;
+        }
+      
+        .cookies-popup-buttons {
+          flex-direction: column;
+          width:100%;
+        }
+      
+        .cookies-popup-accept,
+        .cookies-popup-decline {
+          width: 100%;
+          margin: 10px 0;
+        }
+      }
+         
+</style>  
+<script>// cookies.js
+const cookiesPopup = document.getElementById('cookies-popup');
+const acceptCookies = document.getElementById('accept-cookies');
+const declineCookies = document.getElementById('decline-cookies');
+
+function setCookie(name, value, days) {
+  const date = new Date();
+  date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+  const expires = "expires=" + date.toUTCString();
+  document.cookie = name + "=" + value + ";" + expires + ";path=/";
+}
+
+function hideCookiesPopup() {
+  cookiesPopup.style.display = 'none';
+}
+
+acceptCookies.addEventListener('click', function() {
+  setCookie('cookies_accepted', 'true', 365);
+  hideCookiesPopup();
+});
+
+declineCookies.addEventListener('click', function() {
+  setCookie('cookies_accepted', 'false', 365);
+  hideCookiesPopup();
+});
+
+window.onload = function() {
+  if (document.cookie.indexOf('cookies_accepted=true') >= 0) {
+    hideCookiesPopup();
+  }
+}
+</script>
