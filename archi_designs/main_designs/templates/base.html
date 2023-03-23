@@ -5,13 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Home Plans{% endblock %}</title>
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'main_designs/images/favicon.ico' %}">
     <link rel="stylesheet" href="{% static 'main_designs/css/style.css' %}">
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    {% comment %} <script src="{% static 'main_designs/js/filter.js' %}"></script> {% endcomment %}
     {% block head %}{% endblock %}
     <style>{% block style %}{% endblock style %}</style>
 </head>
