@@ -3,7 +3,7 @@
   <h1>{{ plan.name }}</h1>
   </div>
 <div class="row mt-3">
-    <div class="col-md-8">
+    <div class="col-md-8 carousel">
         <!-- Carousel -->
         <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
             <ol class="carousel-indicators">
@@ -27,17 +27,16 @@
                 <span class="visually-hidden">Next</span>
             </button>
         </div>
-       <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-3 details">
               <!-- Main details, Other parameters and Order Now button -->
-  <div class="row">
-    <div class="col-md-10">
+  <div class="row details">
+    <div class="col-md-12">
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">Main Details</h5>
               <ul class="list-group list-group-flush">
-                <li class="list-group-item style="display: inline-block;">
+                <li class="list-group-item" style="display: inline-block;">
                   <img src="{% static 'main_designs/icons/bed.png' %}" alt="Bedrooms icon" width="24" height="24">
                   {% if plan.min_bedrooms == plan.max_bedrooms %}
                   <strong>Bedrooms: </strong>{{ plan.min_bedrooms }}
@@ -45,7 +44,7 @@
                   <strong>Bedrooms: </strong>{{ plan.min_bedrooms }}-{{ plan.max_bedrooms }}
                   {% endif %}
                 </li>
-                <li class="list-group-item style="display: inline-block;">
+                <li class="list-group-item" style="display: inline-block;">
                   <img src="{% static 'main_designs/icons/bath.png' %}" alt="Bathrooms icon" width="24" height="24">
                   {% if plan.min_bathrooms == plan.max_bathrooms %}
                   <strong> Bathrooms: </strong>{{ plan.min_bathrooms }}
@@ -53,11 +52,11 @@
                   <strong>Bathrooms: </strong>{{ plan.min_bathrooms }}-{{ plan.max_bathrooms }}
                   {% endif %}
                 </li>
-                <li class="list-group-item style="display: inline-block;">
+                <li class="list-group-item" style="display: inline-block;">
                   <img src="{% static 'main_designs/icons/story.png' %}" alt="Floors icon" width="24" height="24">
                   <strong>Floors:</strong> {{ plan.floors }}
                 </li>
-                <li class="list-group-item style="display: inline-block;">
+                <li class="list-group-item" style="display: inline-block;">
                   <img src="{% static 'main_designs/icons/size.png' %}" alt="Heated sq. feet icon" width="24" height="24">
                   <strong>Heated sq. feet:</strong> {{ plan.formatted_heated_sq_feet }}
                 </li>
@@ -67,7 +66,7 @@
         </div>
       </div>
       <!-- Other parameters -->
-        <div class="col-md-6">
+        <div class="col-md-12">
           <ul class="list-inline">
             {% if plan.walk_in_pantry %}
             <li class="list-inline-item"><i class="bi bi-check"></i> Walk-in pantry</li>
@@ -87,11 +86,11 @@
           </ul>
         </div>
   <!-- Order now button with affiliate link -->
-  <div class="row mt-3">
-    <div class="col-md-10">
+  <div class="row">
+    <div class="col-md-12">
         <a href="{{ plan.affiliate_link }}" class="btn btn-primary btn-lg order-now-btn">ORDER NOW</a>
     </div>
-      <div class="col-md-10">
+      <div class="col-md-12">
           <a href="{{ plan.affiliate_link }}" class="btn btn-primary btn-lg customize-plan-btn">CUSTOMIZE THIS PLAN</a>
       </div>
     </div>

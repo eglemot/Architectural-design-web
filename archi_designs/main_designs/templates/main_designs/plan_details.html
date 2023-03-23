@@ -7,14 +7,10 @@
 {% include 'main_designs/includes/plan_details_main.html'%}
 <!-- Floor pictures -->
 <div class="col-md-12">
-  <div class="floor-plan-h mt-5 text-center">
-    <h2>Floor Plan</h2>
-    <hr></hr>
-  </div>
   <div class="floor-pictures-list col-md-12">
     {% for floor_picture in floor_pictures %}
       <div class="floor-picture text-center">
-        <h3>{% if floor_picture.floor_number == 1 %}Main Floor{% elif floor_picture.floor_number == 2 %}Upper Floor{% elif floor_picture.floor_number == 3 %}Top Floor{% endif %}</h3>
+        <h2>{% if floor_picture.floor_number == 1 %}Main Floor{% elif floor_picture.floor_number == 2 %}Upper Floor{% elif floor_picture.floor_number == 3 %}Top Floor{% endif %}</h2>
       </div>
       <div class="col-md-12 text-center pb-4">
         <a href="{{ floor_picture.image.url }}" data-fancybox="{{ floor_picture.plan.name }} - {% if floor_picture.floor_number == 1 %}Main Floor{% elif floor_picture.floor_number == 2 %}Upper Floor{% elif floor_picture.floor_number == 3 %}Top Floor{% endif %}" data-caption="{{ floor_picture.plan.name }} - {% if floor_picture.floor_number == 1 %}Main Floor{% elif floor_picture.floor_number == 2 %}Upper Floor{% elif floor_picture.floor_number == 3 %}Top Floor{% endif %}">
@@ -44,7 +40,7 @@
 {% include 'main_designs/includes/plan_gallery.html'%}
 <!-- Related plans -->
 <div class="related-plans">
-  <h3>YOU MAY ALSO LIKE:</h3>
+  <h4 class="text-center">YOU MAY ALSO LIKE</h4>
   <div class="row">
     {% for related_plan in related_plans %}
       <div class="col-md-3 mb-4">
@@ -106,7 +102,9 @@
     max-height: 280px;
   }
 }
-
+.col-md-8.carousel{
+  margin-bottom:1rem;
+}
 .carousel-item img {
   object-fit: cover;
 }
@@ -140,11 +138,6 @@
 
 /* Style for the main details card */
 
-.card-title {
-  font-size: 1.25rem;
-  margin-bottom: 1rem;
-}
-
 .list-group-item {
   displaystyle="display: inline-block;;
   align-items: center;
@@ -162,20 +155,19 @@
   margin-top: 1rem;
 }
 
-.list-group-item i {
+{% comment %} .list-group-item i {
   color: #28a745;
   font-size: 1.25rem;
   margin-right: 0.5rem;
-}
+} {% endcomment %}
 ul.list-inline {
-    displaystyle="display: inline-block;;
-style="display: inline-block;-wrap: wrap;
     justify-content: space-between;
     align-items: center;
+    margin-top:1rem;
+    margin-bottom:2rem;
   }
   
   ul.list-inline li {
-    displaystyle="display: inline-block;;
     align-items: center;
     font-size: 18px;
     color: #4a4a4a;
@@ -187,10 +179,6 @@ style="display: inline-block;-wrap: wrap;
     margin-right: 10px;
     color: #28a745;
   }
-  body {
-    background-color: #f5f5f5;
-    font-family: 'Helvetica Neue', sans-serif;
-}
 
 .container {
     max-width: 1200px;
@@ -246,7 +234,7 @@ style="display: inline-block;-wrap: wrap;
   display: block;
   margin: 20px 0 20px 0; 
   padding: 10px 20px;
-  background-color: #007bff;
+  background-color:#DD7827;
   color: #fff;
   font-size: 16px;
   border: none;
@@ -256,13 +244,19 @@ style="display: inline-block;-wrap: wrap;
 #view-more:hover {
   background-color: #0069d9;
 }
-
+.carousel-indicators li.active{
+  background-color:#DD7827;
+}
 .customize-plan-btn {
   width:100%;
   margin-top:10px;
+  background-color:#323d3e;
+  border-color:#323d3e;
 }
 .order-now-btn{
   width:100%;
+  background-color:#DD7827;
+  border-color:#DD7827;
 }
 .plan-details-name{
   text-align:center;
@@ -366,6 +360,53 @@ table.table td:last-child {
 .no-underline {
   text-decoration: none!important;
 }
+.plan-details-name {
+  background-color:#dd7827;
+  padding:20px;
+  text-align:center;
+  margin-bottom:2rem;
+  color: #FEFCF3;
+  width:100%;
+}
+.row.mt-3{
+  margin-right:1rem;
+  margin-left:1rem;
+  padding-right:1rem;
+  padding-left:1rem;
+  background-color:#FEFBF3;
+}
+.card{
+  border:none;
+  box-shadow: 3px 3px 8px 2px rgb(0 0 0 / 15%);
+  background-color:#FEFBF3;
+}
+.list-group-item{
+  background-color:#FEFBF3;
+}
+.floor-pictures-list{
+  background-color:white;
+  margin-top:2rem;
+  margin-bottom:2rem;
+}
+h2 {
+  padding-top:2rem;
+}
+h3 {
+  padding-top:1rem;
+  padding-bottom:1rem;
+  background-color:#323d3e;
+  color:#FEFBF3;
+  margin-bottom:2rem;
+}
+h4 {
+  padding-top:1rem;
+  padding-bottom:1rem;
+  background-color:#323d3e;
+  color:#FEFBF3;
+  margin-bottom:1rem;
+  margin-top:1rem;
+}
+
 
 {% endblock style%}
 

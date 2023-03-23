@@ -1,14 +1,4 @@
 /* global styles */
-:root {
-    --primary-color: #A4907C;
-    --secondary-color: #8D7B68;
-    --third-color: #C8B6A6;
-    --fourth-color: #F1DEC9;
-    --success-color: #10a232;
-    --danger-color: #df2538;
-    --warning-color: #ffc107;
-    --info-color: #4ecce0;
-  }
 * {
     box-sizing: border-box;
 }
@@ -56,7 +46,7 @@ nav ul li a:hover {
 }
 
 main {
-    background-color:#dcd7c938;
+    background-color:#FEFBF3;
 }
 
 footer {
