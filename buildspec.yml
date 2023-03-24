@@ -10,11 +10,12 @@ phases:
   build:
     commands:
       - echo "Running database migrations..."
+      - cd Architectural-design-web/archi_designs/manage.py
       - python manage.py migrate
       - echo "Running tests..."
       - python manage.py test
   post_build:
     commands:
       - echo "Deploying to Elastic Beanstalk..."
-      - eb use Django-web
+      - eb use Djangoweb
       - eb deploy
