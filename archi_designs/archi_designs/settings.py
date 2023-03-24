@@ -29,7 +29,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['houseplans-env.eba-ei5dpy6y.us-west-2.elasticbeanstalk.com']
+ALLOWED_HOSTS = ['archi-designs.herokuapp.com']
 
 
 # Application definition
@@ -78,10 +78,21 @@ WSGI_APPLICATION = 'archi_designs.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# } 
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        "ENGINE": "django.db.backends.postgresql_psycopg2",
+        "HOST": "ec2-34-251-233-253.eu-west-1.compute.amazonaws.com",
+        "NAME": "dc2qea55sph5cl",
+        "USER": "mxjkeuhcblbhbt",
+        "PASSWORD": "059fa98ee0e302c78cc8b13987f261c47cdd44617366ca92eb03f74c299f6690",
+        "PORT": 5432,
     }
 }
 
@@ -120,12 +131,14 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = 'static/'
-STATIC_ROOT = BASE_DIR.joinpath(STATIC_URL)
+# STATIC_URL = 'static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_URL = "/static/"
+django_heroku.settings(locals())
+
 MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR.joinpath(MEDIA_URL)
 
-django_heroku.settings(locals())
 
 # Email settings
 EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'

@@ -21,6 +21,7 @@ gunicorn==20.1.0
 idna==3.4
 jmespath==1.0.1
 jsonschema==3.2.0
+noise==1.2.2
 paramiko==3.1.0
 pathspec==0.10.1
 Pillow==9.4.0
@@ -40,4 +41,5 @@ texttable==1.6.7
 urllib3==1.26.15
 wcwidth==0.1.9
 websocket-client==0.59.0
+white==0.1.2
 whitenoise==6.4.0
