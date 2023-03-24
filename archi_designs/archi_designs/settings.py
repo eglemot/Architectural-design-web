@@ -135,10 +135,9 @@ USE_TZ = True
 # STATIC_URL = 'static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = "/static/"
-django_heroku.settings(locals())
-
 MEDIA_URL = 'media/'
-MEDIA_ROOT = BASE_DIR.joinpath(MEDIA_URL)
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+django_heroku.settings(locals())
 
 
 # Email settings
