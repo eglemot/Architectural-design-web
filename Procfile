@@ -1,1 +1,1 @@
-web gunicorn archi_designs.wsgi:application --log-file -
+web: gunicorn archi_designs.wsgi
