@@ -132,3 +132,7 @@ dmypy.json
 archi_designs/media
 .DS_Store
 main_designs/static/main_designs/images/
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
