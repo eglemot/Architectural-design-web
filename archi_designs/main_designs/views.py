@@ -130,6 +130,8 @@ class ContactView(FormView):
 def privacy_policy(request):
     return render(request, 'main_designs/privacy_policy.html')
 
+def affiliate_disclosure(request):
+    return render(request, 'main_designs/affiliate_disclosure.html')
 
 
 
