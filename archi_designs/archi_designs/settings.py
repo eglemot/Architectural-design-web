@@ -79,23 +79,23 @@ WSGI_APPLICATION = 'archi_designs.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# } 
-
 DATABASES = {
     'default': {
-        "ENGINE": "django.db.backends.postgresql_psycopg2",
-        "HOST": "ec2-34-251-233-253.eu-west-1.compute.amazonaws.com",
-        "NAME": "dc2qea55sph5cl",
-        "USER": "mxjkeuhcblbhbt",
-        "PASSWORD": "059fa98ee0e302c78cc8b13987f261c47cdd44617366ca92eb03f74c299f6690",
-        "PORT": 5432,
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
-}
+} 
+
+# DATABASES = {
+#     'default': {
+#         "ENGINE": "django.db.backends.postgresql_psycopg2",
+#         "HOST": "ec2-34-251-233-253.eu-west-1.compute.amazonaws.com",
+#         "NAME": "dc2qea55sph5cl",
+#         "USER": "mxjkeuhcblbhbt",
+#         "PASSWORD": "059fa98ee0e302c78cc8b13987f261c47cdd44617366ca92eb03f74c299f6690",
+#         "PORT": 5432,
+#     }
+# }
 
 
 # Password validation
