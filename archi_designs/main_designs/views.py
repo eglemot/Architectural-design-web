@@ -126,10 +126,9 @@ class ContactView(FormView):
 
         messages.success(self.request, 'Thank you for your message!')
         return super().form_valid(form)
-
-
-
-
+    
+def privacy_policy(request):
+    return render(request, 'main_designs/privacy_policy.html')
 
 
 
