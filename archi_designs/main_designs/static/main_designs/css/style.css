@@ -92,7 +92,8 @@ header {
       text-align: center;
       background-color:#DCD7C9;
       border-bottom:0.1px solid #2C3639;
-      padding:2px;
+      padding-top:10px;
+      padding-bottom:10px;
     }
 
     .menu li:first-child{
@@ -102,6 +103,8 @@ header {
         color:#2C3639;
         text-decoration: none;
         font-weight: 500;
+        font-size: 22px;
+
     }
     .menu li a:hover{
         color:#DD7827;

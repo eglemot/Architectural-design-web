@@ -9,5 +9,5 @@ urlpatterns = [
     path('contacts/', views.ContactView.as_view(), name='contact'),
     path('privacy-policy/', views.privacy_policy, name='privacy_policy'),
     path('affiliate-disclosure/', views.affiliate_disclosure, name='affiliate_disclosure'),
-    path('robots.txt', TemplateView.as_view(template_name="robots.txt", content_type="text/plain"), name="robots"),
+    path('robots.txt/', TemplateView.as_view(template_name="main_designs/robots.txt", content_type="text/plain"), name="robots"),
 ]
