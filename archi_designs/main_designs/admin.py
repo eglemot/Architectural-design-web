@@ -18,7 +18,7 @@ class PlanPictureAdmin(admin.ModelAdmin):
     search_fields = ('plan__name',)
 
 class PlanAdmin(admin.ModelAdmin):
-    list_display = ('name', 'heated_sq_feet', 'floors', 'min_bedrooms', 'max_bedrooms', 'min_bathrooms', 'max_bathrooms', 'basement', 'loft', 'walk_in_pantry', 'home_office', 'mudroom', 'bonus_room', 'wrap_around_porch', 'style')
+    list_display = ('id','name', 'heated_sq_feet', 'floors', 'min_bedrooms', 'max_bedrooms', 'min_bathrooms', 'max_bathrooms', 'basement', 'loft', 'walk_in_pantry', 'home_office', 'mudroom', 'bonus_room', 'wrap_around_porch', 'style')
     search_fields = ('name',)
     inlines = [
         PlanPictureInline,
