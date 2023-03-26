@@ -18,7 +18,7 @@ class HomePageView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['top_plans'] = Plan.objects.filter(id__in=[1, 2, 3, 4, 5, 6, 7, 8])
+        context['top_plans'] = Plan.objects.filter(id__in=[3, 5, 6, 7, 8, 9, 10, 11])
 
         under_2000 = Plan.objects.filter(heated_sq_feet__lt=2000)
         between_2000_3000 = Plan.objects.filter(heated_sq_feet__gte=2000, heated_sq_feet__lte=3000)
