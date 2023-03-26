@@ -21,34 +21,44 @@
     {% include 'main_designs/includes/cookies_popup.html'%}
     <header>
         <div class="logo">
-            <a href="{% url 'home' %}">
-                <img src="{% static 'main_designs/images/logo.png' %}" alt="Logo" class="logo" width="200" height="40">
-            </a>
+          <a href="{% url 'home' %}">
+            <img src="{% static 'main_designs/images/logo.png' %}" alt="Logo" class="logo" width="200" height="40">
+          </a>
         </div>
+        <button class="menu-toggle"><i class="bi bi-list"></i></button>
         <nav>
-            <ul>
-                <li><a href="{% url 'home' %}">Home</a></li>
-                <li><a href="{% url 'plan_list' %}">Plans</a></li>
-                <li><a href="{% url 'contact' %}">Contacts</a></li>
-            </ul>
+          <ul class="menu">
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'plan_list' %}">Plans</a></li>
+            <li><a href="{% url 'contact' %}">Contacts</a></li>
+          </ul>
         </nav>
-    </header>
-
-    <main>
-        {% block content %}
-        {% endblock %}
-    </main>
-
-    <div class="col-md-12 items">
-        <li><a href="{% url 'privacy_policy' %}">Privacy Policy</a></li>
-        <li><a href="{% url 'affiliate_disclosure' %}">Affiliate Disclosure</a></li>
-    </div>
-    
-    <footer class="footer bg-dark text-white">
-          <div class="col-md-12">
-            <p class="footer-text">All rights reserved &copy; www.barndohomeplans.com</p>
-          </div>
-    </footer> 
+        <script>
+          const menuToggle = document.querySelector('.menu-toggle');
+          const menu = document.querySelector('.menu');
       
-</body>
+          menuToggle.addEventListener('click', () => {
+            menu.classList.toggle('show-menu');
+          });
+        </script>
+      </header>
+      
+  
+    <main>
+      {% block content %}
+      {% endblock %}
+    </main>
+  
+    <div class="col-md-12 items">
+      <li><a href="{% url 'privacy_policy' %}">Privacy Policy</a></li>
+      <li><a href="{% url 'affiliate_disclosure' %}">Affiliate Disclosure</a></li>
+    </div>
+  
+    <footer class="footer bg-dark text-white">
+      <div class="col-md-12">
+        <p class="footer-text">All rights reserved &copy; www.barndohomeplans.com</p>
+      </div>
+    </footer>
+  </body>
+  
 </html>
