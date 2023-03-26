@@ -5,3 +5,44 @@
 <p>This website may contain affiliate links, which means we may earn a commission if you click on a link and make a purchase. This comes at no additional cost to you. Our goal is to provide you with accurate and helpful information, and we only recommend products or services that we believe will benefit you. We appreciate your support in purchasing through these links, which helps us maintain and improve our website. Thank you for your support.</p>
 </div>
 {% endblock %}
+{% block style%}
+.container {
+    max-width: 800px;
+    margin-top:2rem;
+    margin-bottom:17rem;
+    padding: 40px;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #333;
+  }
+  
+  .container h1 {
+    font-size: 36px;
+    font-weight: bold;
+    margin-top: 0;
+    margin-bottom: 20px;
+  }
+  
+  .container p {
+    margin-top: 0;
+    margin-bottom: 20px;
+  }
+  
+  .container a {
+    color: #007bff;
+  }
+  
+  .container a:hover {
+    color: #0056b3;
+    text-decoration: underline;
+  }
+  
+  @media (max-width: 600px) {
+    .container {
+      padding: 20px;
+      font-size: 14px;
+    }
+  }
+  
+{%endblock style%}

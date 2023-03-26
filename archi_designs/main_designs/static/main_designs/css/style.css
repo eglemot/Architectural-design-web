@@ -62,18 +62,38 @@ footer {
      display: none;
     }
   }
-.footer {
-    margin-top:6rem;
+.footer.bg-dark.text-white{
+    margin-top:0;
 }
-.container{
-    padding:0;
+.col-md-12.items{
+    padding-top:20px;
+    padding-bottom:20px;
+    background-color:#DD7827;
   }
-.footer-links li {
+.items {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
     list-style: none;
+    padding: 0;
   }
-.privacy-footer {
-color:#DD7827;
+  
+.items li {
+    margin-right: 1rem;
+    color:#2c3639;
+  }
+.privacy-policy-a{
+    background-color:#2c3639;
 }
+.items a {
+    color:#2c3639;
+    text-decoration: none;
+  }
+.items a:hover {
+    color:rgb(4, 62, 237);
+  }
+  
+
      
 
   
