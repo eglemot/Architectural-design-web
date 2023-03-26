@@ -12,7 +12,7 @@ body {
 
 header {
     display: flex;
-    position:fixed;
+    position:sticky;
     align-items: center;
     justify-content: space-between;
     padding: 10px;
@@ -156,7 +156,7 @@ footer {
     text-decoration: none;
   }
 .items a:hover {
-    color:rgb(4, 62, 237);
+    color:white;
   }
   
 
