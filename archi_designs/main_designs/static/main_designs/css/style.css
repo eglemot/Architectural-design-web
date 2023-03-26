@@ -59,7 +59,8 @@ footer {
 }
 @media (max-width: 767px) {
     .logo {
-     display: none;
+     width: 120px;
+     height:40px;
     }
   }
 .footer.bg-dark.text-white{
